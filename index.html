@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interaktywny Portal Matematyczny | Klasy 1-8</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-green: #2e7d32; --current-class-color: #e91e63;
+            --bg-light: #f4f7f6;
+            --klasa1: #e91e63; --klasa2: #03a9f4; --klasa3: #4caf50;
+            --klasa4: #ff9800; --klasa5: #ff5722; --klasa6: #9c27b0;
+            --klasa7: #009688; --klasa8: #3f51b5;
+        }
+
+        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; background-color: var(--bg-light); color: #333; }
+
+        header { background-color: var(--primary-green); color: white; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .logo { font-size: 24px; font-weight: bold; display: flex; align-items: center; gap: 10px; }
+        
+        /* LICZNIK MONET W HEADERZE */
+        .points-display { background: rgba(255, 255, 255, 0.2); padding: 8px 15px; border-radius: 20px; font-weight: bold; display: flex; align-items: center; gap: 8px; border: 1px solid rgba(255,255,255,0.4); }
+        .points-display i { color: #ffd700; font-size: 18px; animation: spinCoin 3s infinite linear; }
+
+        @keyframes spinCoin { 0% { transform: rotateY(0deg); } 100% { transform: rotateY(360deg); } }
+
+        .grade-nav { background: white; padding: 10px; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; border-bottom: 3px solid #ddd; }
+        .grade-item { text-align: center; text-decoration: none; color: white; font-weight: bold; padding: 10px; border-radius: 15px; width: 95px; transition: transform 0.2s; cursor: pointer; border: 3px solid transparent; }
+        .grade-item:hover { transform: scale(1.05); }
+        .grade-item i { font-size: 24px; display: block; margin-bottom: 5px; }
+        .grade-item span { font-size: 11px; text-transform: uppercase; }
+        .grade-item.active { border-color: #222; transform: scale(1.05); box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
+
+        .container { display: grid; grid-template-columns: 1fr 320px; gap: 20px; padding: 20px 5%; max-width: 1400px; margin: 0 auto; }
+
+        .quiz-wrapper { background: white; border-radius: 15px; border-top: 8px solid var(--current-class-color); box-shadow: 0 4px 6px rgba(0,0,0,0.05); padding: 30px; text-align: center; transition: border-color 0.3s; }
+        .quiz-title { color: var(--current-class-color); margin-top: 0; font-size: 24px; border-bottom: 2px dashed #eee; padding-bottom: 15px; transition: color 0.3s; text-transform: uppercase;}
+        
+        .equation { font-size: 65px; font-weight: bold; margin: 30px 0; color: #222; font-family: 'Courier New', Courier, monospace; letter-spacing: 3px; }
+        
+        .options { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 30px; min-height: 90px; align-items: center; }
+        .btn-option { background-color: var(--current-class-color); color: white; font-size: 34px; font-weight: bold; border: none; border-radius: 10px; padding: 15px 35px; min-width: 120px; cursor: pointer; transition: 0.1s; box-shadow: 0 6px 0 rgba(0,0,0,0.2); }
+        .btn-option:hover { filter: brightness(1.1); transform: translateY(2px); box-shadow: 0 4px 0 rgba(0,0,0,0.2); }
+        .btn-option:active { transform: translateY(6px); box-shadow: 0 0 0 transparent; }
+
+        .stats-bar { display: flex; justify-content: center; gap: 20px; font-size: 16px; font-weight: bold; margin-top: 20px; }
+        .stat-box { padding: 10px 25px; border-radius: 8px; color: white; }
+        .correct { background-color: #4caf50; }
+        .wrong { background-color: #f44336; }
+        #feedback { font-size: 24px; font-weight: bold; height: 35px; margin-top: 10px; }
+
+        .sidebar { background: #fff; padding: 20px; border-radius: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); height: fit-content; display: flex; flex-direction: column; gap: 20px; }
+        .sidebar h3 { border-bottom: 2px solid var(--current-class-color); padding-bottom: 10px; margin-top: 0; color: #333; transition: border-color 0.3s; }
+        .menu-list { list-style: none; padding: 0; margin: 0; }
+        .menu-list li { padding: 12px 10px; border-bottom: 1px solid #eee; display: flex; align-items: center; gap: 10px; cursor: pointer; font-size: 14px; border-radius: 5px; transition: 0.2s; }
+        .menu-list li:hover { background: #f5f5f5; padding-left: 15px; }
+        .menu-list li i { color: #aaa; }
+        .menu-list li.active-topic { background: var(--current-class-color); color: white; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .menu-list li.active-topic i { color: white; }
+
+        /* GUZIK REKLAMY REWARDED */
+        .btn-ad { background: linear-gradient(135deg, #ffc107, #ff9800); color: #111; border: none; padding: 15px; border-radius: 10px; font-weight: bold; font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 4px 15px rgba(255,152,0,0.3); transition: 0.2s; }
+        .btn-ad:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255,152,0,0.5); }
+        .btn-ad:disabled { background: #ccc; color: #666; box-shadow: none; cursor: not-allowed; }
+
+        .seo-content { grid-column: 1 / -1; background: white; padding: 40px; border-radius: 15px; margin-top: 10px; line-height: 1.8; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .seo-content h2 { color: var(--primary-green); border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        .seo-block { display: none; }
+        .seo-block.active-seo { display: block; animation: fadeIn 0.5s; }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        @media (max-width: 900px) {
+            .container { grid-template-columns: 1fr; }
+            .equation { font-size: 45px; }
+            .btn-option { font-size: 26px; padding: 15px 25px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo"><i class="fas fa-graduation-cap"></i> MATEMATYKA EDU</div>
+    <div class="points-display">
+        <i class="fas fa-coins"></i>
+        <span id="user-points">0</span> monet
+    </div>
+</header>
+
+<nav class="grade-nav">
+    <div class="grade-item" id="nav-1" style="background: var(--klasa1);" onclick="changeClass(1)"><i class="fas fa-apple-alt"></i><span>Klasa 1</span></div>
+    <div class="grade-item" id="nav-2" style="background: var(--klasa2);" onclick="changeClass(2)"><i class="fas fa-cubes"></i><span>Klasa 2</span></div>
+    <div class="grade-item" id="nav-3" style="background: var(--klasa3);" onclick="changeClass(3)"><i class="fas fa-frog"></i><span>Klasa 3</span></div>
+    <div class="grade-item" id="nav-4" style="background: var(--klasa4);" onclick="changeClass(4)"><i class="fas fa-bolt"></i><span>Klasa 4</span></div>
+    <div class="grade-item" id="nav-5" style="background: var(--klasa5);" onclick="changeClass(5)"><i class="fas fa-rocket"></i><span>Klasa 5</span></div>
+    <div class="grade-item" id="nav-6" style="background: var(--klasa6);" onclick="changeClass(6)"><i class="fas fa-percentage"></i><span>Klasa 6</span></div>
+    <div class="grade-item" id="nav-7" style="background: var(--klasa7);" onclick="changeClass(7)"><i class="fas fa-square-root-alt"></i><span>Klasa 7</span></div>
+    <div class="grade-item" id="nav-8" style="background: var(--klasa8);" onclick="changeClass(8)"><i class="fas fa-superscript"></i><span>Klasa 8</span></div>
+</nav>
+
+<div class="container">
+    <main class="quiz-wrapper">
+        <h1 id="quiz-title" class="quiz-title">Wybierz klasę z menu powyżej</h1>
+        
+        <div id="equation" class="equation">?</div>
+        
+        <div class="options" id="options-container"></div>
+
+        <div id="feedback"></div>
+
+        <div class="stats-bar">
+            <div class="stat-box correct">DOBRZE: <span id="score-correct">0</span></div>
+            <div class="stat-box wrong">BŁĘDÓW: <span id="score-wrong">0</span></div>
+        </div>
+    </main>
+
+    <aside class="sidebar">
+        <div>
+            <h3 id="sidebar-title">Spis tematów</h3>
+            <ul class="menu-list" id="sidebar-menu">
+                </ul>
+        </div>
+
+        <button class="btn-ad" id="ad-button" onclick="watchRewardedAd()">
+            <i class="fas fa-video"></i> Oglądaj reklamę (+50 🪙)
+        </button>
+    </aside>
+
+    <section class="seo-content">
+        <div class="seo-block" id="seo-1">
+            <h2>Matematyka w Klasie 1: Budowanie fundamentów</h2>
+            <p>Edukacja w pierwszej klasie to czas poznawania liczb. Nasze quizy pomagają w szybkiej automatyzacji <strong>dodawania i odejmowania w zakresie do 10 oraz 20</strong>.</p>
+        </div>
+        <div class="seo-block" id="seo-2">
+            <h2>Klasa 2: Tabliczka mnożenia i większe liczby</h2>
+            <p>Druga klasa to moment, kiedy dodawanie wchodzi na poziom do 100. Wprowadzamy również pierwsze kroki w <strong>tabliczce mnożenia</strong>.</p>
+        </div>
+        <div class="seo-block" id="seo-3">
+            <h2>Klasa 3: Przekraczanie progu i dzielenie</h2>
+            <p>W klasie 3 skupiamy się na trudniejszych obliczeniach pamięciowych. Uczniowie trenują <strong>odejmowanie z przekraczaniem progu dziesiątkowego</strong>.</p>
+        </div>
+        <div class="seo-block" id="seo-4">
+            <h2>Klasa 4: Liczby trzycyfrowe i trudniejsze dzielenie</h2>
+            <p>Pojawiają się działania na dużych liczbach. Biegłe <strong>dodawanie i odejmowanie w zakresie 1000</strong> to podstawa programu.</p>
+        </div>
+        <div class="seo-block" id="seo-5">
+            <h2>Klasa 5: Wyzwania arytmetyczne</h2>
+            <p>Wielkie liczby i zaawansowane mnożenie pamięciowe! Moduły przygotowane dla klasy piątej doskonalą wyobraźnię matematyczną.</p>
+        </div>
+        <div class="seo-block" id="seo-6">
+            <h2>Klasa 6: Ułamki dziesiętne i procenty</h2>
+            <p>Rewolucja w nauczaniu – wkraczamy w świat części ułamkowych! Uczeń musi zrozumieć zasady <strong>dodawania ułamków dziesiętnych</strong>.</p>
+        </div>
+        <div class="seo-block" id="seo-7">
+            <h2>Klasa 7: Liczby ujemne i potęgi</h2>
+            <p>Interaktywny trening <strong>dodawania i odejmowania liczb całkowitych (ujemnych i dodatnich)</strong> całkowicie niweluje problemy szkolne.</p>
+        </div>
+        <div class="seo-block" id="seo-8">
+            <h2>Klasa 8: Algebra i Egzamin Ósmoklasisty</h2>
+            <p>Przed egzaminem ósmoklasisty konieczne jest zautomatyzowanie wiedzy. Ćwiczymy proste <strong>równania z niewiadomą x</strong>.</p>
+        </div>
+    </section>
+</div>
+
+<script>
+    const classConfigs = {
+        1: { color: "#e91e63", topics: [
+            { name: "Dodawanie do 10", type: "add10" },
+            { name: "Odejmowanie do 10", type: "sub10" },
+            { name: "Dodawanie do 20", type: "add20" },
+            { name: "Odejmowanie do 20", type: "sub20" }
+        ]},
+        2: { color: "#03a9f4", topics: [
+            { name: "Dodawanie do 100 (pełne 10)", type: "add100_10" },
+            { name: "Odejmowanie do 100", type: "sub100_10" },
+            { name: "Tabliczka mnożenia do 30", type: "mul30" },
+            { name: "Tabliczka mnożenia do 50", type: "mul50" }
+        ]},
+        3: { color: "#4caf50", topics: [
+            { name: "Dodawanie do 100", type: "add100" },
+            { name: "Odejmowanie do 50", type: "sub50" },
+            { name: "Odejmowanie do 100", type: "sub100" },
+            { name: "Tabliczka mnożenia do 100", type: "mul100" }
+        ]},
+        4: { color: "#ff9800", topics: [
+            { name: "Dzielenie w zakresie 100", type: "div100" },
+            { name: "Dodawanie do 1000", type: "add1000" },
+            { name: "Odejmowanie do 1000", type: "sub1000" },
+            { name: "Mnożenie przez 10 i 100", type: "mul_zeros" }
+        ]},
+        5: { color: "#ff5722", topics: [
+            { name: "Zaawansowane mnożenie", type: "mul_adv" },
+            { name: "Duże dzielenie", type: "div_adv" },
+            { name: "Mnożenie (liczby do 50)", type: "mul_med" },
+            { name: "Mieszane dod/odej", type: "mix_addsub" }
+        ]},
+        6: { color: "#9c27b0", topics: [
+            { name: "Dodawanie uł. dziesiętnych", type: "dec_add" },
+            { name: "Odejmowanie uł. dziesiętnych", type: "dec_sub" },
+            { name: "Procenty z liczby", type: "percent" },
+            { name: "Ułamki + liczby całk.", type: "dec_mix" }
+        ]},
+        7: { color: "#009688", topics: [
+            { name: "Dodawanie na minusach", type: "int_add" },
+            { name: "Odejmowanie na minusach", type: "int_sub" },
+            { name: "Potęgowanie (kwadraty)", type: "pow2" },
+            { name: "Mnożenie liczb ujemnych", type: "int_mul" }
+        ]},
+        8: { color: "#3f51b5", topics: [
+            { name: "Pierwiastki kwadratowe", type: "sqrt2" },
+            { name: "Proste równania (znajdź x)", type: "eq_x" },
+            { name: "Potęgowanie (sześciany)", type: "pow3" },
+            { name: "Pierwiastki sześcienne", type: "sqrt3" }
+        ]}
+    };
+
+    let currentClass = 3; 
+    let currentTopicIndex = 0;
+    let correctScore = 0;
+    let wrongScore = 0;
+    let currentAnswer = 0;
+    let isAnswering = false;
+
+    // SYSTEM MONET (Zapisuje stan w przeglądarce)
+    let userPoints = parseInt(localStorage.getItem('math_user_coins')) || 0;
+
+    function updatePointsDisplay() {
+        document.getElementById('user-points').innerText = userPoints;
+        localStorage.setItem('math_user_coins', userPoints);
+    }
+
+    // SYMULATOR REKLAMY REWARDED AD
+    function watchRewardedAd() {
+        const adBtn = document.getElementById('ad-button');
+        adBtn.disabled = true;
+        adBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Ładowanie reklamy...`;
+
+        setTimeout(() => {
+            adBtn.innerHTML = `<i class="fas fa-tv"></i> Oglądanie wideo (50s)...`;
+            
+            setTimeout(() => {
+                // Po zakończeniu "reklamy" dodajemy punkty
+                userPoints += 50;
+                updatePointsDisplay();
+                
+                adBtn.disabled = false;
+                adBtn.innerHTML = `<i class="fas fa-video"></i> Oglądaj reklamę (+50 🪙)`;
+                
+                // Alert dla dziecka
+                alert("Dziękujemy! Otrzymałeś +50 monet 🪙 do swojego konta!");
+            }, 2000); // 2 sekundy oglądania na potrzeby testów
+        }, 1000); // 1 sekunda ładowania
+    }
+
+    function getRandomInt(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
+
+    function changeClass(classNum) {
+        currentClass = classNum;
+        currentTopicIndex = 0;
+        
+        const config = classConfigs[classNum];
+        document.documentElement.style.setProperty('--current-class-color', config.color);
+        
+        document.querySelectorAll('.grade-item').forEach(el => el.classList.remove('active'));
+        document.getElementById(`nav-${classNum}`).classList.add('active');
+
+        document.querySelectorAll('.seo-block').forEach(el => el.classList.remove('active-seo'));
+        document.getElementById(`seo-${classNum}`).classList.add('active-seo');
+
+        renderSidebar();
+        loadTopic(currentTopicIndex);
+    }
+
+    function renderSidebar() {
+        const config = classConfigs[currentClass];
+        const sidebarMenu = document.getElementById('sidebar-menu');
+        sidebarMenu.innerHTML = "";
+        
+        config.topics.forEach((topic, index) => {
+            let li = document.createElement('li');
+            li.innerHTML = `<i class="fas fa-play-circle"></i> ${topic.name}`;
+            if(index === currentTopicIndex) li.classList.add('active-topic');
+            li.onclick = () => loadTopic(index);
+            sidebarMenu.appendChild(li);
+        });
+    }
+
+    function loadTopic(index) {
+        currentTopicIndex = index;
+        const config = classConfigs[currentClass];
+        document.getElementById('quiz-title').innerText = config.topics[index].name;
+        
+        const lis = document.getElementById('sidebar-menu').children;
+        for(let i=0; i<lis.length; i++) lis[i].classList.remove('active-topic');
+        lis[index].classList.add('active-topic');
+
+        correctScore = 0; wrongScore = 0;
+        document.getElementById('score-correct').innerText = 0;
+        document.getElementById('score-wrong').innerText = 0;
+        
+        generateEquation();
+    }
+
+    function generateEquation() {
+        isAnswering = false;
+        document.getElementById('feedback').innerText = "";
+        const type = classConfigs[currentClass].topics[currentTopicIndex].type;
+        let num1, num2, displayEq;
+
+        switch(type) {
+            case "add10": num1 = getRandomInt(1, 9); num2 = getRandomInt(1, 10-num1); currentAnswer = num1+num2; displayEq = `${num1} + ${num2} =`; break;
+            case "sub10": num1 = getRandomInt(2, 10); num2 = getRandomInt(1, num1-1); currentAnswer = num1-num2; displayEq = `${num1} - ${num2} =`; break;
+            case "add20": num1 = getRandomInt(5, 15); num2 = getRandomInt(1, 20-num1); currentAnswer = num1+num2; displayEq = `${num1} + ${num2} =`; break;
+            case "sub20": num1 = getRandomInt(11, 20); num2 = getRandomInt(1, num1-1); currentAnswer = num1-num2; displayEq = `${num1} - ${num2} =`; break;
+            case "add100_10": num1 = getRandomInt(1, 8)*10; num2 = getRandomInt(1, 9 - (num1/10))*10; currentAnswer = num1+num2; displayEq = `${num1} + ${num2} =`; break;
+            case "sub100_10": num1 = getRandomInt(2, 10)*10; num2 = getRandomInt(1, (num1/10)-1)*10; currentAnswer = num1-num2; displayEq = `${num1} - ${num2} =`; break;
+            case "mul30": num1 = getRandomInt(2, 6); num2 = getRandomInt(2, 5); currentAnswer = num1*num2; displayEq = `${num1} × ${num2} =`; break;
+            case "mul50": num1 = getRandomInt(3, 8); num2 = getRandomInt(3, 6); currentAnswer = num1*num2; displayEq = `${num1} × ${num2} =`; break;
+            case "add100": num1 = getRandomInt(15, 80); num2 = getRandomInt(5, 99-num1); currentAnswer = num1+num2; displayEq = `${num1} + ${num2} =`; break;
+            case "sub50": num1 = getRandomInt(20, 50); num2 = getRandomInt(5, num1-1); currentAnswer = num1-num2; displayEq = `${num1} - ${num2} =`; break;
+            case "sub100": num1 = getRandomInt(50, 100); num2 = getRandomInt(10, num1-1); currentAnswer = num1-num2; displayEq = `${num1} - ${num2} =`; break;
+            case "mul100": num1 = getRandomInt(4, 10); num2 = getRandomInt(4, 10); currentAnswer = num1*num2; displayEq = `${num1} × ${num2} =`; break;
+            case "div100": currentAnswer = getRandomInt(2, 10); num2 = getRandomInt(2, 10); num1 = currentAnswer * num2; displayEq = `${num1} : ${num2} =`; break;
+            case "add1000": num1 = getRandomInt(100, 800); num2 = getRandomInt(50, 999-num1); currentAnswer = num1+num2; displayEq = `${num1} + ${num2} =`; break;
+            case "sub1000": num1 = getRandomInt(300, 1000); num2 = getRandomInt(50, num1-100); currentAnswer = num1-num2; displayEq = `${num1} - ${num2} =`; break;
+            case "mul_zeros": num1 = getRandomInt(5, 50); num2 = Math.random() > 0.5 ? 10 : 100; currentAnswer = num1*num2; displayEq = `${num1} × ${num2} =`; break;
+            case "mul_adv": num1 = getRandomInt(11, 20); num2 = getRandomInt(2, 9); currentAnswer = num1*num2; displayEq = `${num1} × ${num2} =`; break;
+            case "div_adv": currentAnswer = getRandomInt(11, 20); num2 = getRandomInt(2, 5); num1 = currentAnswer * num2; displayEq = `${num1} : ${num2} =`; break;
+            case "mul_med": num1 = getRandomInt(10, 25); num2 = 2; currentAnswer = num1*num2; displayEq = `${num1} × ${num2} =`; break;
+            case "mix_addsub": num1 = getRandomInt(100, 500); num2 = getRandomInt(50, 200); if(Math.random() > 0.5) { currentAnswer = num1+num2; displayEq = `${num1} + ${num2} =`; } else { currentAnswer = num1-num2; displayEq = `${num1} - ${num2} =`; } break;
+            case "dec_add": num1 = getRandomInt(1, 50)/10; num2 = getRandomInt(1, 40)/10; currentAnswer = parseFloat((num1+num2).toFixed(1)); displayEq = `${num1} + ${num2} =`; break;
+            case "dec_sub": num1 = getRandomInt(30, 99)/10; num2 = getRandomInt(1, 29)/10; currentAnswer = parseFloat((num1-num2).toFixed(1)); displayEq = `${num1} - ${num2} =`; break;
+            case "percent": num2 = getRandomInt(1, 10)*10; const percents = [10, 20, 25, 50]; num1 = percents[getRandomInt(0, 3)]; currentAnswer = (num1/100) * num2; displayEq = `${num1}% z ${num2} =`; break;
+            case "dec_mix": num1 = getRandomInt(1, 9); num2 = getRandomInt(1, 9)/10; currentAnswer = parseFloat((num1+num2).toFixed(1)); displayEq = `${num1} + ${num2} =`; break;
+            case "int_add": num1 = getRandomInt(-20, -1); num2 = getRandomInt(5, 25); currentAnswer = num1+num2; displayEq = `${num1} + ${num2} =`; break;
+            case "int_sub": num1 = getRandomInt(-10, 10); num2 = getRandomInt(1, 15); currentAnswer = num1-num2; displayEq = `${num1} - ${num2} =`; break;
+            case "pow2": num1 = getRandomInt(2, 15); currentAnswer = num1*num1; displayEq = `${num1}² =`; break;
+            case "int_mul": num1 = getRandomInt(-10, -2); num2 = getRandomInt(2, 9); currentAnswer = num1*num2; displayEq = `${num1} × ${num2} =`; break;
+            case "sqrt2": currentAnswer = getRandomInt(2, 15); num1 = currentAnswer*currentAnswer; displayEq = `√${num1} =`; break;
+            case "eq_x": currentAnswer = getRandomInt(2, 20); num2 = getRandomInt(5, 30); num1 = currentAnswer + num2; displayEq = `x + ${num2} = ${num1}<br><span style="font-size:30px">x = ?</span>`; break;
+            case "pow3": num1 = getRandomInt(2, 6); currentAnswer = num1*num1*num1; displayEq = `${num1}³ =`; break;
+            case "sqrt3": currentAnswer = getRandomInt(2, 5); num1 = currentAnswer*currentAnswer*currentAnswer; displayEq = `∛${num1} =`; break;
+        }
+
+        document.getElementById('equation').innerHTML = displayEq;
+        generateButtons(type);
+    }
+
+    function generateButtons(type) {
+        const container = document.getElementById('options-container');
+        container.innerHTML = ''; 
+        let answers = [currentAnswer];
+        let isDecimal = type.includes("dec");
+
+        while(answers.length < 4) {
+            let wrongAnswer;
+            if (isDecimal) {
+                let offset = getRandomInt(1, 5) / 10;
+                wrongAnswer = Math.random() > 0.5 ? currentAnswer + offset : currentAnswer - offset;
+                wrongAnswer = parseFloat(wrongAnswer.toFixed(1));
+            } else {
+                let offset = getRandomInt(1, (currentAnswer < 10 ? 3 : 10));
+                wrongAnswer = Math.random() > 0.5 ? currentAnswer + offset : currentAnswer - offset;
+            }
+            let canBeNegative = currentClass >= 7;
+            if(wrongAnswer !== currentAnswer && (wrongAnswer >= 0 || canBeNegative) && !answers.includes(wrongAnswer)) {
+                answers.push(wrongAnswer);
+            }
+        }
+        
+        answers.sort(() => Math.random() - 0.5); 
+        
+        answers.forEach(ans => {
+            let btn = document.createElement('button');
+            btn.className = 'btn-option';
+            btn.innerText = ans;
+            btn.onclick = () => checkAnswer(ans, btn);
+            container.appendChild(btn);
+        });
+    }
+
+    function checkAnswer(selected, element) {
+        if(isAnswering) return;
+        isAnswering = true;
+
+        if(selected === currentAnswer) {
+            correctScore++;
+            userPoints += 2; // Każda dobra odpowiedź daje +2 monety jako nagrodę szkolną!
+            updatePointsDisplay();
+            
+            document.getElementById('score-correct').innerText = correctScore;
+            element.style.backgroundColor = "#2e7d32";
+            element.style.boxShadow = "0 4px 0 #1b5e20";
+            document.getElementById('feedback').innerText = "Świetnie! (+2 🪙)";
+            document.getElementById('feedback').style.color = "#2e7d32";
+            setTimeout(generateEquation, 1200);
+        } else {
+            wrongScore++;
+            document.getElementById('score-wrong').innerText = wrongScore;
+            element.style.backgroundColor = "#d32f2f";
+            element.style.boxShadow = "0 4px 0 #b71c1c";
+            document.getElementById('feedback').innerText = "Spróbuj jeszcze raz! ❌";
+            document.getElementById('feedback').style.color = "#d32f2f";
+            setTimeout(() => {
+                isAnswering = false;
+                element.style.backgroundColor = "var(--current-class-color)";
+                element.style.boxShadow = "0 6px 0 rgba(0,0,0,0.2)";
+                document.getElementById('feedback').innerText = "";
+            }, 1000);
+        }
+    }
+
+    // Załadowanie początkowych danych
+    window.onload = () => {
+        updatePointsDisplay();
+        changeClass(3);
+    };
+</script>
+
+</body>
+</html>
