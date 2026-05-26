@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Matma Interaktywna - Nauka przez Zabawę</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-play: #f3f9f1;
+            --main-green: #4caf50;
+            --dark-green: #2e7d32;
+            --accent-orange: #ff9800;
+            --bubble-purple: #9c27b0;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+
+        body {
+            font-family: 'Comic Sans MS', 'Chalkboard SE', 'Segoe UI', sans-serif;
+            margin: 0;
+            background: linear-gradient(135deg, #f5fdf4 0%, #e8f5e9 100%);
+            color: var(--text-color);
+            background-attachment: fixed;
+        }
+
+        /* NAGŁÓWEK DLA DZIECI */
+        header {
+            background: linear-gradient(to bottom, #4caf50, #388e3c);
+            color: white;
+            padding: 15px 4%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 6px 0 #1b5e20;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+        }
+        .logo {
+            font-size: 26px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            text-shadow: 2px 2px 0px #1b5e20;
+        }
+        .logo i {
+            font-size: 32px;
+            color: #ccff90;
+        }
+        .points-display {
+            background: #ff9800;
+            padding: 10px 22px;
+            border-radius: 30px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 20px;
+            box-shadow: 0 4px 0 #e65100;
+            border: 2px solid white;
+            text-shadow: 1px 1px 0px rgba(0,0,0,0.2);
+        }
+        .points-display i {
+            color: #ffd700;
+            animation: bounce 2s infinite alternate;
+        }
+
+        @keyframes bounce {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-5px); }
+        }
+
+        /* PASEK KLAS */
+        .grade-nav {
+            background: #ffffff;
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            border-bottom: 5px solid #ddd;
+            margin-bottom: 20px;
+        }
+        .grade-item {
+            text-align: center;
+            color: white;
+            font-weight: bold;
+            padding: 12px;
+            border-radius: 20px;
+            width: 110px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border: 3px solid transparent;
+            box-shadow: 0 4px 0 rgba(0,0,0,0.15);
+        }
+        .grade-item:hover {
+            transform: translateY(-5px) scale(1.05);
+        }
+        .grade-item i {
+            font-size: 28px;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .grade-item span {
+            font-size: 12px;
+            text-transform: uppercase;
+            display: block;
+        }
+        .grade-item.active {
+            border-color: #333;
+            transform: scale(1.08);
+            box-shadow: 0 6px 0 rgba(0,0,0,0.25);
+        }
+
+        /* UKŁAD STRONY */
+        .container {
+            display: grid;
+            grid-template-columns: 310px 1fr;
+            gap: 25px;
+            padding: 0 4% 40px 4%;
+            max-width: 1440px;
+            margin: 0 auto;
+        }
+
+        /* MENU BOCZNE */
+        .sidebar {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 24px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.06);
+            border: 3px solid #dbedd6;
+            height: fit-content;
+        }
+        .sidebar h3 {
+            margin-top: 0;
+            color: var(--dark-green);
+            border-bottom: 3px solid #c8e6c9;
+            padding-bottom: 12px;
+            font-size: 20px;
+            text-align: center;
+        }
+        .menu-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .menu-list li {
+            padding: 12px 10px;
+            border-bottom: 1px dashed #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s;
+            border-radius: 10px;
+            margin-bottom: 4px;
+        }
+        .menu-list li:hover {
+            background: #f1f8e9;
+            color: var(--dark-green);
+            padding-left: 15px;
+        }
+        .menu-list li.active-topic {
+            background: var(--main-green) !important;
+            color: white !important;
+            font-weight: bold;
+            box-shadow: 0 3px 0 #2e7d32;
+        }
+        .badge-new {
+            background: #ff5722;
+            color: white;
+            font-size: 9px;
+            padding: 3px 6px;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+        /* INTERFEJS GRY */
+        .quiz-wrapper {
+            background: white;
+            border-radius: 28px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            padding: 35px;
+            text-align: center;
+            border: 4px solid #c8e6c9;
+            position: relative;
+        }
+        .meta-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px dashed #e8f5e9;
+            padding-bottom: 20px;
+            margin-bottom: 25px;
+        }
+        .class-badge {
+            background: var(--accent-orange);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 15px;
+            font-weight: bold;
+            font-size: 18px;
+            box-shadow: 0 3px 0 #e65100;
+        }
+        .topic-title {
+            color: var(--dark-green);
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .instruction {
+            font-size: 18px;
+            color: #555;
+            background: #f1f8e9;
+            padding: 10px;
+            border-radius: 12px;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .equation {
+            font-size: 76px;
+            font-weight: bold;
+            margin: 35px 0;
+            color: #1a237e;
+            text-shadow: 3px 3px 0px #e8eaf6;
+            letter-spacing: 3px;
+        }
+
+        .options {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 35px;
+        }
+        .btn-option {
+            background: linear-gradient(to bottom, #aed581, #8bc34a);
+            color: #2e7d32;
+            font-size: 44px;
+            font-weight: bold;
+            border: 3px solid #7cb342;
+            border-radius: 20px;
+            padding: 15px 45px;
+            min-width: 150px;
+            cursor: pointer;
+            transition: all 0.1s ease;
+            box-shadow: 0 6px 0 #558b2f;
+        }
+        .btn-option:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.05);
+        }
+        .btn-option:active {
+            transform: translateY(4px);
+            box-shadow: 0 2px 0 #558b2f;
+        }
+
+        .pineapple-container {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin: 25px 0 10px 0;
+            min-height: 50px;
+        }
+        .pineapple {
+            font-size: 36px;
+            color: #e0e0e0;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), color 0.3s;
+        }
+        .pineapple.active-fruit {
+            color: #ffb300;
+            transform: scale(1.25) rotate(5deg);
+            filter: drop-shadow(0 3px 5px rgba(0,0,0,0.15));
+        }
+
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 30px;
+        }
+        .stat-box {
+            padding: 8px 20px;
+            border-radius: 12px;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 0 rgba(0,0,0,0.1);
+        }
+        .stat-box.correct { background-color: #4caf50; }
+        .stat-box.wrong { background-color: #f44336; }
+        
+        #feedback {
+            font-size: 24px;
+            font-weight: bold;
+            height: 35px;
+            margin: 15px 0;
+        }
+
+        .main-menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+        .class-box {
+            background: white;
+            border-radius: 24px;
+            border: 3px solid #e0e0e0;
+            overflow: hidden;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.04);
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .class-box:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.08);
+        }
+        .class-box-header {
+            padding: 18px;
+            text-align: center;
+            color: white;
+            font-weight: bold;
+            font-size: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+        }
+        .class-box-body {
+            padding: 20px;
+        }
+        .class-box-body ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .class-box-body li {
+            padding: 8px 0;
+            font-size: 14px;
+            border-bottom: 1px dashed #f0f0f0;
+            color: #555;
+        }
+
+        .hidden { display: none !important; }
+
+        @media (max-width: 950px) {
+            .container { grid-template-columns: 1fr; }
+            .equation { font-size: 56px; }
+            .btn-option { font-size: 32px; padding: 12px 25px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo" onclick="showMainMenu()"><i class="fas fa-graduation-cap"></i> MULTI-MATMA</div>
+    <div class="top-bar-right">
+        <div class="points-display">
+            <i class="fas fa-star"></i>
+            <span id="user-points">0</span> GWIAZDEK
+        </div>
+    </div>
+</header>
+
+<nav class="grade-nav">
+    <div class="grade-item" id="nav-0" style="background: #9c27b0;" onclick="changeClass(0)"><i class="fas fa-bug"></i><span>Zerówka</span></div>
+    <div class="grade-item" id="nav-1" style="background: #e91e63;" onclick="changeClass(1)"><i class="fas fa-elephant"></i><span>Klasa 1</span></div>
+    <div class="grade-item" id="nav-2" style="background: #03a9f4;" onclick="changeClass(2)"><i class="fas fa-hippo"></i><span>Klasa 2</span></div>
+    <div class="grade-item" id="nav-3" style="background: #4caf50;" onclick="changeClass(3)"><i class="fas fa-otter"></i><span>Klasa 3</span></div>
+    <div class="grade-item" id="nav-4" style="background: #ff9800;" onclick="changeClass(4)"><i class="fas fa-monkey"></i><span>Klasa 4</span></div>
+    <div class="grade-item" id="nav-5" style="background: #ff5722;" onclick="changeClass(5)"><i class="fas fa-kangaroo"></i><span>Klasa 5</span></div>
+    <div class="grade-item" id="nav-6" style="background: #795548;" onclick="changeClass(6)"><i class="fas fa-lion"></i><span>Klasa 6</span></div>
+    <div class="grade-item" id="nav-7" style="background: #009688;" onclick="changeClass(7)"><i class="fas fa-frog"></i><span>Klasa 7</span></div>
+    <div class="grade-item" id="nav-8" style="background: #3f51b5;" onclick="changeClass(8)"><i class="fas fa-fish"></i><span>Klasa 8</span></div>
+</nav>
+
+<div class="container">
+    
+    <aside class="sidebar">
+        <h3 id="sidebar-title">Spis Tematów</h3>
+        <ul class="menu-list" id="sidebar-menu"></ul>
+    </aside>
+
+    <main>
+        <div id="quiz-screen" class="quiz-wrapper">
+            <div class="meta-header">
+                <div class="class-badge" id="class-badge">Klasa 3</div>
+                <div class="topic-title" id="quiz-title">Ładowanie tematu...</div>
+            </div>
+            
+            <div class="instruction" id="quiz-instruction">Wybierz właściwy wynik!</div>
+            
+            <div id="equation" class="equation">0 + 0 =</div>
+            
+            <div class="options" id="options-container"></div>
+
+            <div class="pineapple-container" id="pineapple-bar"></div>
+            <div style="font-size: 13px; color: #666; font-weight: bold; margin-bottom: 15px; letter-spacing: 0.5px;">
+                ZBIERZ <span id="required-combo">6</span> ANANASÓW ZA POPRAWNE ODPOWIEDZI POD RZĄD!
+            </div>
+
+            <div id="feedback"></div>
+
+            <div class="stats-bar">
+                <div class="stat-box correct"><i class="fas fa-thumbs-up"></i> DOBRZE: <span id="score-correct">0</span></div>
+                <div class="stat-box wrong"><i class="fas fa-times-circle"></i> POULI: <span id="score-wrong">0</span></div>
+            </div>
+        </div>
+
+        <div id="main-menu-screen" class="hidden">
+            <h2 style="text-align: center; margin-top: 0; color: var(--dark-green); font-size: 28px;">Wybierz swoją klasę i zacznij zabawę!</h2>
+            <div class="main-menu-grid" id="main-grid"></div>
+        </div>
+    </main>
+</div>
+
+<article class="edu-content" style="max-width: 1360px; margin: 40px auto; padding: 40px; background: white; border-radius: 24px; box-shadow: 0 8px 20px rgba(0,0,0,0.05); border: 3px solid #e8f5e9; font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.8; color: #444;">
+    <h2 style="color: #2e7d32; font-size: 32px; border-bottom: 3px dashed #c8e6c9; padding-bottom: 15px; margin-top: 0;">Multi-Matma: Dlaczego nauka matematyki przez zabawę jest tak ważna? Kompleksowy przewodnik edukacyjny</h2>
+    
+    <p style="font-size: 16px;">Witaj na innowacyjnym portalu edukacyjnym <strong>Multi-Matma</strong> – wyjątkowym miejscu w sieci, gdzie rygorystyczna nauka spotyka się z angażującą cyfrową grywalizacją. Nasz serwis został starannie zaprojektowany z myślą o uczniach szkół podstawowych oraz dzieciach w wieku przedszkolnym. Nowoczesne badania z zakresu neurodydaktyki i psychologii poznawczej jednoznacznie dowodzą, że mózg rozwijającego się dziecka przyswaja abstrakcyjne pojęcia matematyczne znacznie szybciej, efektywniej i na dłużej, gdy proces ten opiera się na pozytywnych bodźcach, interaktywnej rozrywce oraz redukcji szkolnego stresu.</p>
+    
+    <h3 style="color: #388e3c; font-size: 24px; margin-top: 35px;">Pokonywanie lęku przed matematyką (Math Anxiety)</h3>
+    <p style="font-size: 16px;">Jednym z największych wyzwań współczesnego szkolnictwa jest zjawisko tzw. "lęku matematycznego". Uczniowie często paraliżowani są strachem przed popełnieniem błędu przy tablicy. W Multi-Matmie błąd nie jest powodem do wstydu – jest naturalnym krokiem w procesie uczenia się. Kiedy uczeń udzieli błędnej odpowiedzi, otrzymuje natychmiastową, łagodną informację zwrotną bez negatywnych konsekwencji. Może spróbować ponownie po chwili. Takie bezpieczne środowisko buduje <strong>pewność siebie</strong>, która jest kluczowa w przedmiotach ścisłych.</p>
+
+    <h3 style="color: #388e3c; font-size: 24px; margin-top: 35px;">Grywalizacja jako napęd wewnętrznej motywacji</h3>
+    <p style="font-size: 16px;">Systematyczne powtarzanie działań arytmetycznych jest absolutnym kluczem do biegłości rachunkowej (mental math). Problem w tym, że wypełnianie tradycyjnych kart pracy bywa dla dzieci monotonne i zniechęcające. Dzięki naszej aplikacji dzieci mogą ćwiczyć dodawanie, odejmowanie, mnożenie i dzielenie zapominając o poczuciu rutyny. Wprowadziliśmy zaawansowany, choć intuicyjny motywacyjny system nagród:</p>
+    <ul style="font-size: 16px; margin-top: 15px; padding-left: 25px; color: #555;">
+        <li style="margin-bottom: 10px;"><strong>Zbieranie Gwiazdek:</strong> Każda poprawna odpowiedź nagradzana jest wirtualną walutą, co daje uczniom natychmiastowe poczucie sukcesu i satysfakcji.</li>
+        <li style="margin-bottom: 10px;"><strong>System Combo (Ananasy):</strong> Aby zachęcić do skupienia i dokładności, wdrożyliśmy wskaźnik "combo". Seria poprawnych odpowiedzi pod rząd nagradzana jest Super Ananasem i ogromnym bonusem punktowym. Uczy to koncentracji na zadaniu.</li>
+        <li style="margin-bottom: 10px;"><strong>Nieskończona liczba wyzwań:</strong> Dzięki zaimplementowanym skryptom losującym, każde zapytanie w naszej bazie generuje unikalną kombinację liczbową. Zapobiega to mechanicznemu zapamiętywaniu odpowiedzi (jak ma to miejsce w standardowych zeszytach ćwiczeń) i zmusza młodego użytkownika do czynnego analizowania struktur matematycznych.</li>
+    </ul>
+
+    <h3 style="color: #388e3c; font-size: 24px; margin-top: 35px;">Kompleksowy program dostosowany do polskiego systemu edukacji</h3>
+    <p style="font-size: 16px;">Zadania na platformie zostały ustrukturyzowane z niezwykłą precyzją, aby idealnie odpowiadać wymogom podstawy programowej na poszczególnych szczeblach edukacji. Podzieliliśmy materiał na intuicyjne sekcje:</p>
+    
+    <div style="background: #f9fbe7; padding: 20px; border-radius: 12px; border-left: 5px solid #8bc34a; margin: 20px 0;">
+        <h4 style="margin-top: 0; color: #33691e; font-size: 18px;">Edukacja wczesnoszkolna (Zerówka oraz Klasy 1-3)</h4>
+        <p style="font-size: 15px; margin-bottom: 0;">Ćwiczenia na tym etapie koncentrują się na budowaniu intuicji liczbowej. Rozpoczynamy od orientacji przestrzennej, rozpoznawania kształtów i kolorów. Następnie płynnie przechodzimy do podstawowych operacji: dodawania i odejmowania w zakresie 10, 20 i 50. W klasach drugiej i trzeciej dzieci zapoznają się z pojęciem czasu, miar, a także rozpoczynają przygodę z tabliczką mnożenia (najpierw do 30, potem pełną do 100). Wprowadzamy także proste zadania testowe i innowacyjne "Krzyżówki magiczne", które rozwijają logiczne myślenie.</p>
+    </div>
+
+    <div style="background: #e8eaf6; padding: 20px; border-radius: 12px; border-left: 5px solid #3f51b5; margin: 20px 0;">
+        <h4 style="margin-top: 0; color: #1a237e; font-size: 18px;">Drugi etap edukacyjny (Klasy 4-6)</h4>
+        <p style="font-size: 15px; margin-bottom: 0;">To czas, gdy matematyka staje się bardziej abstrakcyjna. Uczniowie mierzą się z dzieleniem z resztą, co jest świetnym wstępem do ułamków zwykłych. Rozwijamy kompetencje związane z kolejnością wykonywania działań (niezwykle ważna zasada BEDMAS/PEMDAS). W klasie szóstej duży nacisk kładziemy na dodawanie i odejmowanie ułamków dziesiętnych, podstawy figur na płaszczyźnie oraz bardzo praktyczne zadania tekstowe związane z obliczaniem prędkości, drogi i czasu, a także absolutne podstawy obliczeń procentowych.</p>
+    </div>
+
+    <div style="background: #e0f2f1; padding: 20px; border-radius: 12px; border-left: 5px solid #009688; margin: 20px 0;">
+        <h4 style="margin-top: 0; color: #004d40; font-size: 18px;">Przygotowanie do egzaminu (Klasy 7-8)</h4>
+        <p style="font-size: 15px; margin-bottom: 0;">Najstarsze klasy to poważne powtórki i przygotowanie do egzaminu ósmoklasisty. Nasz moduł dla klas siódmych i ósmych oferuje zaawansowane zadania z algebry. Uczniowie utrwalają działania na liczbach całkowitych (w tym problematyczne dla wielu dodawanie i odejmowanie liczb ujemnych). Trenują potęgowanie do kwadratu oraz wyciąganie pierwiastków kwadratowych. Finałem nauki jest moduł rozwiązywania równań liniowych z jedną niewiadomą (x), który stanowi pomost do matematyki w szkole średniej.</p>
+    </div>
+
+    <h3 style="color: #388e3c; font-size: 24px; margin-top: 35px;">Wskazówki dla rodziców i nauczycieli</h3>
+    <p style="font-size: 16px;">Edukacja matematyczna rozpoczyna się w domu. Aby w pełni wykorzystać potencjał naszej platformy Multi-Matma, zalecamy stosowanie metody "krótkich, ale częstych sesji". Badania pokazują, że 10 do 15 minut intensywnego treningu rachunkowego każdego dnia przynosi nieporównywalnie lepsze rezultaty niż godzinne ślęczenie nad zadaniami raz w tygodniu. Zachęcamy do wspólnego rozwiązywania zadań z najmłodszymi dziećmi – to świetna okazja do jakościowego spędzenia czasu i celebrowania wspólnie zdobytych "gwiazdek".</p>
+    
+    <p style="font-size: 16px; margin-top: 20px; font-weight: bold; text-align: center; color: #2e7d32;">
+        Dołącz do tysięcy uczniów, którzy odkryli, że matematyka nie musi być trudna. <br>Regularny trening czyni mistrza. Zapraszamy do codziennej zabawy z Multi-Matmą!
+    </p>
+</article>
+
+<script>
+    const classConfigs = {
+        0: { name: "Zerówka", color: "#9c27b0", icon: "fa-bug", topics: [
+            { name: "Kształty i kolory", type: "add5" },
+            { name: "Kierunki i położenie", type: "sub5" },
+            { name: "Kalendarz i czas", type: "add5" },
+            { name: "Wielkości i porównania", type: "sub5" }
+        ]},
+        1: { name: "Klasa 1", color: "#e91e63", icon: "fa-elephant", topics: [
+            { name: "Matematyka w praktyce", type: "add10" },
+            { name: "Poznajemy liczby", type: "sub10" },
+            { name: "Dodawanie w zakresie 20", type: "add20" },
+            { name: "Odejmowanie w zakresie 20", type: "sub20" }
+        ]},
+        2: { name: "Klasa 2", color: "#03a9f4", icon: "fa-hippo", topics: [
+            { name: "Miary, plany i czas", type: "add100_10" },
+            { name: "Dodawanie i odejmowanie", type: "sub100_10" },
+            { name: "Mnożenie do 30", type: "mul30" },
+            { name: "Dzielenie w praktyce", type: "mul50" }
+        ]},
+        3: { name: "Klasa 3", color: "#4caf50", icon: "fa-otter", topics: [
+            { name: "Dodawanie w zakresie 50 - TEST", type: "add50" },
+            { name: "Odejmowanie w zakresie 50 - TEST", type: "sub50" },
+            { name: "Mnożenie i dzielenie", type: "mul100" },
+            { name: "Działania na liczbach do 100", type: "sub100" },
+            { name: "Krzyżówka magiczna - DODAWANIE", type: "add50", isNew: true },
+            { name: "Krzyżówka magiczna - ODEJMOWANIE", type: "sub50", isNew: true }
+        ]},
+        4: { name: "Klasa 4", color: "#ff9800", icon: "fa-monkey", topics: [
+            { name: "Działania na liczbach", type: "div100" },
+            { name: "Kolejność wykonywania działań", type: "add1000" },
+            { name: "Ułamki zwykłe", type: "sub1000" }
+        ]},
+        5: { name: "Klasa 5", color: "#ff5722", icon: "fa-kangaroo", topics: [
+            { name: "Liczby i działania", type: "mul_adv" },
+            { name: "Własności liczb naturalnych", type: "div_adv" },
+            { name: "Liczby całkowite", type: "mix_addsub" }
+        ]},
+        6: { name: "Klasa 6", color: "#795548", icon: "fa-lion", topics: [
+            { name: "Liczby naturalne i ułamki", type: "dec_add" },
+            { name: "Figury na płaszczyźnie", type: "dec_sub" },
+            { name: "Prędkość, droga, czas", type: "percent" }
+        ]},
+        7: { name: "Klasa 7", color: "#009688", icon: "fa-frog", topics: [
+            { name: "Liczby ujemne", type: "int_add" },
+            { name: "Procenty w zadaniach", type: "int_sub" },
+            { name: "Wyrażenia algebraiczne", type: "pow2" }
+        ]},
+        8: { name: "Klasa 8", color: "#3f51b5", icon: "fa-fish", topics: [
+            { name: "Potęgi i pierwiastki", type: "sqrt2" },
+            { name: "Wyrażenia i równania", type: "eq_x" }
+        ]}
+    };
+
+    let currentClass = 3; 
+    let currentTopicIndex = 0; 
+    let correctScore = 0;
+    let wrongScore = 0;
+    let currentAnswer = 0;
+    let isAnswering = false;
+    let comboCount = 0; 
+    const requiredCombo = 6;
+
+    let userPoints = parseInt(localStorage.getItem('multimatma_stars')) || 0;
+
+    function updatePointsDisplay() {
+        document.getElementById('user-points').innerText = userPoints;
+        localStorage.setItem('multimatma_stars', userPoints);
+    }
+
+    function renderPineapples() {
+        const bar = document.getElementById('pineapple-bar');
+        bar.innerHTML = '';
+        for (let i = 0; i < 10; i++) {
+            let icon = document.createElement('i');
+            icon.className = 'fas fa-apple-whole pineapple'; 
+            if (i < comboCount) {
+                icon.classList.add('active-fruit');
+            }
+            bar.appendChild(icon);
+        }
+        document.getElementById('required-combo').innerText = requiredCombo;
+    }
+
+    function getRandomInt(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
+
+    function showMainMenu() {
+        document.getElementById('quiz-screen').classList.add('hidden');
+        document.getElementById('main-menu-screen').classList.remove('hidden');
+        buildMainMenuGrid();
+    }
+
+    function buildMainMenuGrid() {
+        const grid = document.getElementById('main-grid');
+        grid.innerHTML = '';
+        Object.keys(classConfigs).forEach(num => {
+            const conf = classConfigs[num];
+            let box = document.createElement('div');
+            box.className = 'class-box';
+            box.onclick = () => {
+                document.getElementById('main-menu-screen').classList.add('hidden');
+                document.getElementById('quiz-screen').classList.remove('hidden');
+                changeClass(parseInt(num));
+            };
+            
+            let html = `<div class="class-box-header" style="background:${conf.color}"><i class="fas ${conf.icon}"></i> ${conf.name}</div><div class="class-box-body"><ul>`;
+            conf.topics.forEach(t => {
+                html += `<li><i class="fas fa-star" style="font-size:10px;color:${conf.color}"></i> ${t.name}</li>`;
+            });
+            html += `</ul></div>`;
+            box.innerHTML = html;
+            grid.appendChild(box);
+        });
+    }
+
+    function changeClass(classNum) {
+        currentClass = classNum;
+        currentTopicIndex = 0;
+        comboCount = 0;
+        
+        const config = classConfigs[classNum];
+        document.getElementById('class-badge').innerText = config.name;
+        document.getElementById('class-badge').style.backgroundColor = config.color;
+        
+        document.querySelectorAll('.grade-item').forEach(el => el.classList.remove('active'));
+        document.getElementById(`nav-${classNum}`).classList.add('active');
+
+        renderSidebar();
+        loadTopic(currentTopicIndex);
+    }
+
+    function renderSidebar() {
+        const config = classConfigs[currentClass];
+        const sidebarMenu = document.getElementById('sidebar-menu');
+        sidebarMenu.innerHTML = "";
+        
+        config.topics.forEach((topic, index) => {
+            let li = document.createElement('li');
+            li.innerHTML = `<span>${index+1}. ${topic.name}</span>`;
+            if(topic.isNew) {
+                li.innerHTML += `<span class="badge-new">NOWOŚĆ</span>`;
+            }
+            if(index === currentTopicIndex) li.classList.add('active-topic');
+            li.onclick = () => loadTopic(index);
+            sidebarMenu.appendChild(li);
+        });
+    }
+
+    function loadTopic(index) {
+        currentTopicIndex = index;
+        const config = classConfigs[currentClass];
+        document.getElementById('quiz-title').innerText = config.topics[index].name;
+        
+        const lis = document.getElementById('sidebar-menu').children;
+        for(let i=0; i<lis.length; i++) lis[i].classList.remove('active-topic');
+        if(lis[index]) lis[index].classList.add('active-topic');
+
+        correctScore = 0; wrongScore = 0; comboCount = 0;
+        document.getElementById('score-correct').innerText = 0;
+        document.getElementById('score-wrong').innerText = 0;
+        
+        generateEquation();
+    }
+
+    function generateEquation() {
+        isAnswering = false;
+        document.getElementById('feedback').innerText = "";
+        renderPineapples();
+        
+        const type = classConfigs[currentClass].topics[currentTopicIndex].type;
+        let num1, num2, displayEq;
+
+        let instr = "Kliknij guzik będący wynikiem działania.";
+        if(type.includes("sub")) instr = "Kliknij guzik będący wynikiem odejmowania.";
+        if(type.includes("add")) instr = "Kliknij guzik będący wynikiem dodawania.";
+        if(type.includes("mul")) instr = "Kliknij guzik będący wynikiem mnożenia.";
+        if(type.includes("div")) instr = "Kliknij guzik będący wynikiem dzielenia.";
+        document.getElementById('quiz-instruction').innerText = instr;
+
+        switch(type) {
+            case "add5": num1 = getRandomInt(1, 4); num2 = getRandomInt(1, 5-num1); currentAnswer = num1+num2; displayEq = `${num1} + ${num2} =`; break;
+            case "sub5": num1 = getRandomInt(2, 5); num2 = getRandomInt(1, num1-1); currentAnswer = num1-num2; displayEq = `${num1} - ${num2} =`; break;
+            case "add10": num1 = getRandomInt(1, 9); num2 = getRandomInt(1, 10-num1); currentAnswer = num1+num2; displayEq = `${num1} + ${num2} =`; break;
+            case "sub10": num1 = getRandomInt(2, 10); num2 = getRandomInt(1, num1-1); currentAnswer = num1-num2; displayEq = `${num1} - ${num2} =`; break;
+            case "add20": num1 = getRandomInt(5, 15); num2 = getRandomInt(1, 20-num1); currentAnswer = num1+num2; displayEq = `${num1} + ${num2} =`; break;
+            case "sub20": num1 = getRandomInt(11, 20); num2 = getRandomInt(1, num1-1); currentAnswer = num1-num2; displayEq = `${num1} - ${num2} =`; break;
+            case "add50": num1 = getRandomInt(10, 35); num2 = getRandomInt(5, 50-num1); currentAnswer = num1+num2; displayEq = `${num1} + ${num2} =`; break;
+            case "sub50": num1 = getRandomInt(25, 49); num2 = getRandomInt(10, 24); currentAnswer = num1-num2; displayEq = `${num1} - ${num2} =`; break;
+            case "add100_10": num1 = getRandomInt(1, 8)*10; num2 = getRandomInt(1, 9 - (num1/10))*10; currentAnswer = num1+num2; displayEq = `${num1} + ${num2} =`; break;
+            case "sub100_10": num1 = getRandomInt(2, 10)*10; num2 = getRandomInt(1, (num1/10)-1)*10; currentAnswer = num1-num2; displayEq = `${num1} - ${num2} =`; break;
+            case "mul30": num1 = getRandomInt(2, 6); num2 = getRandomInt(2, 5); currentAnswer = num1*num2; displayEq = `${num1} × ${num2} =`; break;
+            case "mul50": num1 = getRandomInt(3, 8); num2 = getRandomInt(3, 6); currentAnswer = num1*num2; displayEq = `${num1} × ${num2} =`; break;
+            case "sub100": num1 = getRandomInt(50, 100); num2 = getRandomInt(10, num1-1); currentAnswer = num1-num2; displayEq = `${num1} - ${num2} =`; break;
+            case "mul100": num1 = getRandomInt(4, 10); num2 = getRandomInt(4, 10); currentAnswer = num1*num2; displayEq = `${num1} × ${num2} =`; break;
+            case "div100": currentAnswer = getRandomInt(2, 10); num2 = getRandomInt(2, 10); num1 = currentAnswer * num2; displayEq = `${num1} : ${num2} =`; break;
+            case "add1000": num1 = getRandomInt(100, 800); num2 = getRandomInt(50, 999-num1); currentAnswer = num1+num2; displayEq = `${num1} + ${num2} =`; break;
+            case "sub1000": num1 = getRandomInt(300, 1000); num2 = getRandomInt(50, num1-100); currentAnswer = num1-num2; displayEq = `${num1} - ${num2} =`; break;
+            case "mul_adv": num1 = getRandomInt(11, 20); num2 = getRandomInt(2, 9); currentAnswer = num1*num2; displayEq = `${num1} × ${num2} =`; break;
+            case "div_adv": currentAnswer = getRandomInt(11, 20); num2 = getRandomInt(2, 5); num1 = currentAnswer * num2; displayEq = `${num1} : ${num2} =`; break;
+            case "mix_addsub": num1 = getRandomInt(100, 500); num2 = getRandomInt(50, 200); if(Math.random() > 0.5) { currentAnswer = num1+num2; displayEq = `${num1} + ${num2} =`; } else { currentAnswer = num1-num2; displayEq = `${num1} - ${num2} =`; } break;
+            case "dec_add": num1 = getRandomInt(1, 50)/10; num2 = getRandomInt(1, 40)/10; currentAnswer = parseFloat((num1+num2).toFixed(1)); displayEq = `${num1} + ${num2} =`; break;
+            case "dec_sub": num1 = getRandomInt(30, 99)/10; num2 = getRandomInt(1, 29)/10; currentAnswer = parseFloat((num1-num2).toFixed(1)); displayEq = `${num1} - ${num2} =`; break;
+            case "percent": num2 = getRandomInt(1, 10)*10; const percents = [10, 20, 25, 50]; num1 = percents[getRandomInt(0, 3)]; currentAnswer = (num1/100) * num2; displayEq = `${num1}% z ${num2} =`; break;
+            case "int_add": num1 = getRandomInt(-20, -1); num2 = getRandomInt(5, 25); currentAnswer = num1+num2; displayEq = `${num1} + ${num2} =`; break;
+            case "int_sub": num1 = getRandomInt(-10, 10); num2 = getRandomInt(1, 15); currentAnswer = num1-num2; displayEq = `${num1} - ${num2} =`; break;
+            case "pow2": num1 = getRandomInt(2, 15); currentAnswer = num1*num1; displayEq = `${num1}² =`; break;
+            case "sqrt2": currentAnswer = getRandomInt(2, 15); num1 = currentAnswer*currentAnswer; displayEq = `√${num1} =`; break;
+            case "eq_x": currentAnswer = getRandomInt(2, 20); num2 = getRandomInt(5, 30); num1 = currentAnswer + num2; displayEq = `x + ${num2} = ${num1}`; break;
+        }
+
+        document.getElementById('equation').innerHTML = displayEq;
+        generateButtons(type);
+    }
+
+    function generateButtons(type) {
+        const container = document.getElementById('options-container');
+        container.innerHTML = ''; 
+        
+        let answersSet = new Set();
+        answersSet.add(currentAnswer);
+
+        let isDecimal = type.includes("dec");
+
+        while(answersSet.size < 4) {
+            let wrongAnswer;
+            if (isDecimal) {
+                let offset = getRandomInt(1, 5) / 10;
+                wrongAnswer = Math.random() > 0.5 ? currentAnswer + offset : currentAnswer - offset;
+                wrongAnswer = parseFloat(wrongAnswer.toFixed(1));
+            } else {
+                let offset = getRandomInt(1, (currentAnswer < 10 ? 4 : 12));
+                wrongAnswer = Math.random() > 0.5 ? currentAnswer + offset : currentAnswer - offset;
+            }
+            
+            let canBeNegative = currentClass >= 7;
+            if(wrongAnswer !== currentAnswer && (wrongAnswer >= 0 || canBeNegative)) {
+                answersSet.add(wrongAnswer);
+            }
+        }
+        
+        let answersArray = Array.from(answersSet);
+        answersArray.sort(() => Math.random() - 0.5); 
+        
+        answersArray.forEach(ans => {
+            let btn = document.createElement('button');
+            btn.className = 'btn-option';
+            btn.innerText = ans;
+            btn.onclick = () => checkAnswer(ans, btn);
+            container.appendChild(btn);
+        });
+    }
+
+    function checkAnswer(selected, element) {
+        if(isAnswering) return;
+        isAnswering = true;
+
+        if(selected === currentAnswer) {
+            correctScore++;
+            comboCount++;
+            userPoints += 5; 
+            
+            document.getElementById('score-correct').innerText = correctScore;
+            element.style.background = "linear-gradient(to bottom, #81c784, #4caf50)";
+            element.style.borderColor = "#388e3c";
+            element.style.color = "white";
+            
+            document.getElementById('feedback').innerText = "Wspaniale! Dobra odpowiedź! ✨ 🎉";
+            document.getElementById('feedback').style.color = "#2e7d32";
+            
+            if (comboCount >= requiredCombo) {
+                userPoints += 30; 
+                alert("Fantastycznie! Zgoniłeś 6 dobrych odpowiedzi pod rząd i zdobywasz Super Ananasa oraz bonusowe 30 Gwiazdek! 🍍⭐");
+                comboCount = 0;
+            }
+
+            updatePointsDisplay();
+            setTimeout(generateEquation, 1000);
+        } else {
+            wrongScore++;
+            comboCount = 0; 
+            document.getElementById('score-wrong').innerText = wrongScore;
+            element.style.background = "linear-gradient(to bottom, #e57373, #f44336)";
+            element.style.borderColor = "#d32f2f";
+            element.style.color = "white";
+            
+            document.getElementById('feedback').innerText = "Ojej, to nie ta odpowiedź! Spróbuj jeszcze raz! 🌟";
+            document.getElementById('feedback').style.color = "#d32f2f";
+            
+            setTimeout(() => {
+                isAnswering = false;
+                element.style.background = "linear-gradient(to bottom, #aed581, #8bc34a)";
+                element.style.borderColor = "#7cb342";
+                element.style.color = "#2e7d32";
+                document.getElementById('feedback').innerText = "";
+                renderPineapples();
+            }, 1300);
+        }
+    }
+
+    window.onload = () => {
+        updatePointsDisplay();
+        changeClass(3); 
+    };
+</script>
+
+</body>
+</html>
