@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Strefa Wiedzy - Blog o Rozwoju i Zdrowym Stylu Życia</title>
+    <title>Mega Portal Wiedzy - Sukces, Zdrowie, Finanse</title>
     <style>
         :root {
             --primary-color: #2c3e50;
@@ -26,18 +26,18 @@
             background: linear-gradient(135deg, var(--primary-color), #1a252f);
             color: var(--white);
             text-align: center;
-            padding: 3rem 1rem;
+            padding: 4rem 1rem;
         }
 
         header h1 {
             margin: 0;
-            font-size: 2.5rem;
+            font-size: 3rem;
             letter-spacing: 1px;
         }
 
         header p {
             margin: 10px 0 0 0;
-            font-size: 1.1rem;
+            font-size: 1.3rem;
             opacity: 0.9;
         }
 
@@ -48,14 +48,14 @@
             z-index: 1000;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             text-align: center;
-            padding: 10px 0;
+            padding: 12px 0;
         }
 
         nav a {
             color: var(--white);
             text-decoration: none;
-            padding: 10px 20px;
-            margin: 0 5px;
+            padding: 10px 15px;
+            margin: 0 3px;
             font-weight: 600;
             display: inline-block;
             transition: color 0.3s ease;
@@ -66,17 +66,16 @@
         }
 
         .container {
-            max-width: 950px;
+            max-width: 1050px;
             margin: 40px auto;
             padding: 0 20px;
             box-sizing: border-box;
         }
 
-        /* Style dla sekcji (podstron) */
         .page-section {
-            display: none; /* Domyślnie ukryte, aktywowane przez JS */
+            display: none;
             background-color: var(--white);
-            padding: 40px;
+            padding: 50px;
             border-radius: 8px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
             animation: fadeIn 0.5s ease;
@@ -86,16 +85,15 @@
             display: block;
         }
 
-        /* Style dla listy wpisów na stronie głównej */
         .blog-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 30px;
+            gap: 40px;
         }
 
         .post-card {
             background-color: var(--white);
-            padding: 30px;
+            padding: 40px;
             border-radius: 8px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
             transition: transform 0.3s ease;
@@ -108,6 +106,7 @@
         .post-card h2 {
             margin-top: 0;
             color: var(--primary-color);
+            font-size: 1.9rem;
         }
 
         .btn {
@@ -128,68 +127,71 @@
             background-color: #2980b9;
         }
 
-        /* Formatowanie artykułów blogowych */
         article h1 {
-            font-size: 2.2rem;
+            font-size: 2.6rem;
             color: var(--primary-color);
             border-bottom: 3px solid var(--secondary-color);
             padding-bottom: 15px;
             margin-top: 0;
+            line-height: 1.3;
         }
 
         article h2 {
-            font-size: 1.6rem;
+            font-size: 1.9rem;
             color: var(--primary-color);
-            margin-top: 35px;
-            border-left: 5px solid var(--secondary-color);
+            margin-top: 45px;
+            border-left: 6px solid var(--secondary-color);
             padding-left: 15px;
         }
 
         article h3 {
-            font-size: 1.25rem;
+            font-size: 1.45rem;
             color: #2980b9;
-            margin-top: 25px;
+            margin-top: 35px;
         }
 
         article p {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             text-align: justify;
+            font-size: 1.05rem;
         }
 
         article ul, article ol {
-            margin-bottom: 25px;
-            padding-left: 30px;
+            margin-bottom: 30px;
+            padding-left: 35px;
+            font-size: 1.05rem;
         }
 
         article li {
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
 
         .blockquote {
             background-color: #f1f2f6;
-            border-left: 5px solid var(--primary-color);
-            padding: 20px;
-            margin: 30px 0;
+            border-left: 6px solid var(--primary-color);
+            padding: 25px;
+            margin: 35px 0;
             font-style: italic;
+            font-size: 1.1rem;
         }
 
         footer {
             background-color: var(--primary-color);
             color: var(--white);
             text-align: center;
-            padding: 30px 10px;
+            padding: 40px 10px;
             margin-top: 60px;
         }
 
         footer p {
-            margin: 0 0 15px 0;
+            margin: 0 0 20px 0;
         }
 
         footer a {
             color: #bdc3c7;
             text-decoration: none;
-            margin: 0 10px;
-            font-size: 0.9rem;
+            margin: 0 12px;
+            font-size: 0.95rem;
         }
 
         footer a:hover {
@@ -202,24 +204,26 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        @media (max-width: 600px) {
-            nav a { padding: 8px 10px; font-size: 0.9rem; }
-            .page-section { padding: 20px; }
-            article h1 { font-size: 1.7rem; }
+        @media (max-width: 768px) {
+            nav a { padding: 8px 10px; font-size: 0.85rem; }
+            .page-section { padding: 25px; }
+            article h1 { font-size: 1.9rem; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>Strefa Wiedzy</h1>
-        <p>Inspiracja, Rozwój, Zdrowie – Twój codzienny przewodnik po lepszym jutrze</p>
+        <h1>Mega Portal Wiedzy</h1>
+        <p>Cyfrowa Encyklopedia Rozwoju, Zdrowia, Finansów i Efektywności</p>
     </header>
 
     <nav>
         <a href="#home" onclick="switchPage('home')">Strona Główna</a>
-        <a href="#artykul-1" onclick="switchPage('artykul-1')">Artykuł 1</a>
-        <a href="#artykul-2" onclick="switchPage('artykul-2')">Artykuł 2</a>
+        <a href="#artykul-1" onclick="switchPage('artykul-1')">1. Cyfrowy Detoks</a>
+        <a href="#artykul-2" onclick="switchPage('artykul-2')">2. Nawyki Żywieniowe</a>
+        <a href="#artykul-3" onclick="switchPage('artykul-3')">3. Finanse Osobiste</a>
+        <a href="#artykul-4" onclick="switchPage('artykul-4')">4. Optymalizacja Snu</a>
         <a href="#o-nas" onclick="switchPage('o-nas')">O nas</a>
         <a href="#kontakt" onclick="switchPage('kontakt')">Kontakt</a>
     </nav>
@@ -231,14 +235,26 @@
             <div class="blog-grid">
                 <div class="post-card">
                     <h2>Cyfrowy detoks i higiena pracy przed ekranem. Jak odzyskać focus w świecie powiadomień?</h2>
-                    <p>Przeciętny człowiek spędza przed ekranami urządzeń cyfrowych ponad jedną trzecią swojego dnia. Dowiedz się, jak nadmiar bodźców wpływa na Twój mózg oraz poznaj sprawdzone techniki odzyskiwania koncentracji...</p>
+                    <p>Żyjemy w czasach bezprecedensowego eksperymentu technologicznego. Stały napływ bodźców niszczy naszą zdolność do głębokiej koncentracji. Przeczytaj ten potężny przewodnik, aby dowiedzieć się, jak przejąć kontrolę nad neuroprzekaźnikami...</p>
                     <button class="btn" onclick="switchPage('artykul-1')">Czytaj artykuł</button>
                 </div>
 
                 <div class="post-card">
                     <h2>Jak mądrze budować nawyki żywieniowe bez restrykcyjnych diet? Podstawy zdrowego rozsądku</h2>
-                    <p>Zapomnij o głodówkach i rewolucyjnych dietach cud, które przynoszą efekt jojo. Kluczem do trwałego zdrowia i szczupłej sylwetki jest zrozumienie procesów metabolicznych oraz psychologii nawyków...</p>
+                    <p>Zapomnij o destrukcyjnych głodówkach i rewolucyjnych dietach cud, które rujnują metabolizm i psychikę. Prawdziwa i trwała zmiana sylwetki oraz zdrowia opiera się na psychologii nawyków i biologicznym balansie...</p>
                     <button class="btn" onclick="switchPage('artykul-2')">Czytaj artykuł</button>
+                </div>
+
+                <div class="post-card">
+                    <h2>Niezależność finansowa od podstaw. Kompleksowy przewodnik po oszczędzaniu i inwestowaniu</h2>
+                    <p>Inflacja niszczy wartość Twoich oszczędności na tradycyjnych kontach. Zrozumienie mechanizmów rynkowych, procentu składanego oraz dywersyfikacji ryzyka to jedyna droga do zabezpieczenia swojej przyszłości...</p>
+                    <button class="btn" onclick="switchPage('artykul-3')">Czytaj artykuł</button>
+                </div>
+
+                <div class="post-card">
+                    <h2>Biohacking snu i nocnej regeneracji. Jak nauka pozwala zmaksymalizować potencjał Twojego mózgu</h2>
+                    <p>Sen to najważniejszy i najbardziej niedoceniany system operacyjny człowieka. Odkryj, jak architektura snu, temperatura ciała oraz odpowiednie nawyki wieczorne mogą drastycznie podnieść Twoją energię za dnia...</p>
+                    <button class="btn" onclick="switchPage('artykul-4')">Czytaj artykuł</button>
                 </div>
             </div>
         </div>
@@ -247,38 +263,28 @@
         <div id="artykul-1" class="page-section">
             <article>
                 <h1>Cyfrowy detoks i higiena pracy przed ekranem. Jak odzyskać focus w świecie powiadomień?</h1>
-                <p class="intro"><strong>Wprowadzenie:</strong> Żyjemy w czasach bezprecedensowego eksperymentu technologicznego. Nigdy w historii ludzkości nasz mózg nie musiał przetwarzać tak gigantycznej ilości danych w tak krótkim czasie. Smartfony, tablety, komputery i wszechobecne social media stały się integralną częścią naszej codzienności, oferując natychmiastowy dostęp do wiedzy i rozrywki. Jednak ta wygoda ma swoją mroczną cenę, którą płacimy każdego dnia. Jest nią nasza zdolność do głębokiej koncentracji, stabilność emocjonalna oraz zdrowie fizyczne. Niniejszy artykuł stanowi wyczerpującą analizę zjawiska przebodźcowania cyfrowego oraz praktyczny przewodnik, jak wdrożyć higienę ekranową i przeprowadzić skuteczny cyfrowy detoks.</p>
-                
+                <p><strong>Wprowadzenie i tło historyczne:</strong> W ciągu zaledwie dwóch dekad ludzkość dokonała gigantycznego skoku technologicznego, całkowicie zmieniając sposób, w jaki komunikujemy się, pracujemy, zdobywamy wiedzę i spędzamy wolny czas. Narzędzia cyfrowe, które pierwotnie miały służyć nam jako ułatwienie codziennych obowiązków, niepostrzeżenie przejęły kontrolę nad naszą uwagą. Przeciętny człowiek spędza obecnie przed ekranem telefonu, komputera czy telewizora ponad jedną trzecią swojego dobowego czasu, nie licząc godzin spędzonych w pracy zawodowej. To oznacza, że w skali całego roku spędzamy kilka miesięcy patrząc w świecące matryce. Konsekwencje tego stanu rzeczy są widoczne na każdym kroku: gwałtrovny spadek zdolności koncentracji, plaga zaburzeń lękowych, chroniczne zmęczenie oraz bezsenność. Niniejszy artykuł to bezkompromisowe, naukowe i praktyczne spojrzenie na problem przebodźcowania informacyjnego. Dowiesz się z niego, jak okiełznać technologię, by na powrót stała się Twoim sługą, a nie bezwzględnym panem.</p>
                 <h2>1. Mechanizm dopaminowej pułapki – dlaczego tak trudno odłożyć telefon?</h2>
-                <p>Aby skutecznie walczyć z uzależnieniem od technologii, musimy najpierw zrozumieć, jak aplikacje mobilne wpływają na chemię naszego mózgu. Projektanci platform społecznościowych oraz gier mobilnych zatrudniają sztaby neurobiologów, których jedynym zadaniem jest zatrzymanie naszej uwagi na jak najdłuższy czas. Kluczowym narzędziem w tej walce jest neuroprzekaźnik o nazwie <strong>dopamina</strong>, powszechnie nazywany hormonem przyjemności.</p>
-                <p>Wbrew obiegowej opinii, dopamina nie odpowiada bezpośrednio za uczucie satysfakcji, lecz za <em>oczekiwanie nagrody</em>. Za każdym razem, gdy widzisz czerwoną ikonkę powiadomienia, słyszysz dźwięk wiadomości lub odświeżasz tablicę na Instagramie, Twój mózg otrzymuje mikroskopijny strzał dopaminy. Nie wiesz, co tam znajdziesz – może to ważny mail, może polubienie zdjęcia, a może nic istotnego. Ten mechanizm zmiennego harmonogramu nagród jest dokładnie tym samym mechanizmem, który napędza uzależnienie od hazardu w kasynach. W efekcie stajemy się więźniami własnych telefonów, kompulsywnie sprawdzając je nawet kilkadziesiąt razy na godzinę.</p>
-
+                <p>Aby skutecznie walczyć z uzależnieniem od technologii, musimy najpierw zrozumieć, jak aplikacje mobilne wpływają na chemię naszego mózgu. Projektanci platform społecznościowych oraz gier mobilnych zatrudniają sztaby neurobiologów, których jedynym zadaniem jest zatrzymanie naszej uwagi na jak najdłuższy czas. Kluczowym narzędziem w tej walce jest neuroprzekaźnik o nazwie dopamina, powszechnie nazywany hormonem przyjemności.</p>
+                <p>Wbrew obiegowej opinii, dopamina nie odpowiada bezpośrednio za uczucie satysfakcji, lecz za oczekiwanie nagrody. Za każdym razem, gdy widzisz czerwoną ikonkę powiadomienia, słyszysz dźwięk wiadomości lub odświeżasz tablicę na Instagramie, Twój mózg otrzymuje mikroskopijny strzał dopaminy. Nie wiesz, co tam znajdziesz – może to ważny mail, może polubienie zdjęcia, a może nic istotnego. Ten mechanizm zmiennego harmonogramu nagród jest dokładnie tym samym mechanizmem, który napędza uzależnienie od hazardu w kasynach. W efekcie stajemy się więźniami własnych telefonów, kompulsywnie sprawdzając je nawet kilkadziesiąt razy na godzinę.</p>
                 <h2>2. Negatywne skutki chronicznego przebodźcowania ekranami</h2>
-                <p>Ciągła obecność w sieci i nieustanna wielozadaniowość (multitasking) prowadzą do głębokich zmian w strukturze naszej uwagi. Ludzki mózg nie jest ewolucyjnie przystosowany do jednoczesnego pisania maila, odpisywania na komunikatorze i słuchania podcastu. To, co nazywamy wielozadaniowością, jest w rzeczywistości niezwykle szybkim i wycieńczającym przełączaniem się między zadaniami (ang. <em>task-switching</em>), co drastycznie obniża efektywność i drastycznie zwiększa poziom stresu.</p>
-                
+                <p>Ciągła obecność w sieci i nieustanna wielozadaniowość (multitasking) prowadzą do głębokich zmian w strukturze naszej uwagi. Ludzki mózg nie jest ewolucyjnie przystosowany do jednoczesnego pisania maila, odpisywania na komunikatorze i słuchania podcastu. To, co nazywamy wielozadaniowością, jest w rzeczywistości niezwykle szybkim i wycieńczającym przełączaniem się między zadaniami (ang. task-switching), co drastycznie obniża efektywność i drastycznie zwiększa poziom stresu.</p>
                 <h3>A. Spadek zdolności do pracy głębokiej (Deep Work)</h3>
                 <p>Praca głęboka to umiejętność skupienia się na trudnym poznawczo zadaniu bez jakichkolwiek rozpraszaczy. To właśnie w tym stanie powstają najlepsze teksty, programy komputerowe czy plany biznesowe. Niestety, permanentne wystawienie na powiadomienia sprawia, że tracimy tę zdolność. Nasz mózg oducza się nudy – w każdej wolnej sekundzie (w kolejce, na czerwonym świetle) sięgamy po smartfon, przez co tracimy umiejętność dłuższego utrzymania jednej myśli.</p>
-
                 <h3>B. Degradacja jakości snu i bezsenność</h3>
-                <p>Ekrany emitują tzw. <strong>światło niebieskie</strong> (HEV), które dla naszego organizmu jest sygnałem tożsamym ze światłem słonecznym. Ekspozycja na to światło w godzinach wieczornych blokuje wydzielanie <strong>melatoniny</strong> – hormonu odpowiedzialnego za zdrowy sen. W konsekwencji mamy problemy z zasypianiem, a sam sen jest płytki, pozbawiony kluczowych faz regeneracji głębokiej, co skutkuje chronicznym zmęczeniem od samego rana.</p>
-
+                <p>Ekrany emitują tzw. światło niebieskie (HEV), które dla naszego organizmu jest sygnałem tożsamym ze światłem słonecznym. Ekspozycja na to światło w godzinach wieczornych blokuje wydzielanie melatoniny – hormonu odpowiedzialnego za zdrowy sen. W konsekwencji mamy problemy z zasypianiem, a sam sen jest płytki, pozbawiony kluczowych faz regeneracji głębokiej, co skutkuje chronicznym zmęczenie od samego rana.</p>
                 <h2>3. Jak przeprowadzić skuteczny cyfrowy detoks? Plan działania</h2>
                 <p>Całkowite odcięcie się od technologii w XXI wieku jest niemożliwe i nieefektywne. Celem cyfrowego detoksu nie jest powrót do epoki kamienia łupanego, lecz zdefiniowanie zdrowych relacji z narzędziami cyfrowymi. Oto sprawdzone kroki do wdrożenia od zaraz:</p>
-                
                 <ul>
-                    <li><strong>Bezwzględne wyłączenie powiadomień:</strong> Wejdź w ustawienia telefonu i wyłącz powiadomienia ze wszystkich aplikacji społecznościowych, informacyjnych i zakupowych. Pozostaw aktywne jedynie połączenia telefoniczne i wiadomości od realnych ludzi. Ty decydujesz, kiedy wchodzisz do aplikacji, aplikacja nie ma prawa wołać Ciebie.</li>
-                    <li><strong>Strefy wolne od technologii:</strong> Wprowadź w domu zasady nienaruszalności przestrzeni. Sypialnia powinna być strefą całkowicie bezekranową. Kup tradycyjny budzik, a telefon zostawiaj na noc w salonie lub kuchni. Drugą taką strefą powinien być stół jadalny podczas posiłków.</li>
-                    <li><strong>Ekran w trybie monochromatycznym (czarno-białym):</strong> Przełączenie wyświetlacza w tryb skali szarości natychmiast odbiera aplikacjom ich atrakcyjność wizualną. Kolorowe ikonki tracą swoją magnetyczną siłę, a Ty spędzasz w telefonie o wiele mniej czasu.</li>
+                    <li><strong>Bezwzględne wyłączenie powiadomień:</strong> Wejdź w ustawienia telefonu i wyłącz powiadomienia ze wszystkich aplikacji społecznościowych, informacyjnych i zakupowych. Pozostaw aktywne jedynie połączenia telefoniczne i wiadomości od realnych ludzi.</li>
+                    <li><strong>Strefy wolne od technologii:</strong> Sypialnia powinna być strefą całkowicie bezekranową. Kup tradycyjny budzik, a telefon zostawiaj na noc w salonie lub kuchni. Drugą taką strefą powinien być stół jadalny podczas posiłków.</li>
+                    <li><strong>Ekran w trybie monochromatycznym:</strong> Przełączenie wyświetlacza w tryb skali szarości natychmiast odbiera aplikacjom ich atrakcyjność wizualną.</li>
                 </ul>
-
                 <div class="blockquote">
                     "Prawdziwym luksusem w dzisiejszych czasach nie jest stały dostęp do informacji, ale umiejętność celowego odłączenia się i bycia tu i teraz."
                 </div>
-
                 <h2>4. Higiena pracy przed ekranem na co dzień</h2>
-                <p>Jeśli Twoja praca wymaga wielogodzinnego siedzenia przed monitorem komputera, musisz wdrożyć żelazne zasady ochrony swojego zdrowia fizycznego. Zaniedbania w tym obszarze prowadzą do zespołu suchego oka, bólów kręgosłupa i chronicznych bólów głowy.</p>
-                <p>Zastosuj <strong>regułę 20-20-20</strong>. Co 20 minut spójrz na obiekt oddalony o co najmniej 20 stóp (około 6 metrów) przez co najmniej 20 sekund. Pozwala to rozluźnić mięśnie rzęskowe oka, które pracują bez przerwy, gdy patrzysz na bliski monitor. Dodatkowo zadbaj o ergonomiczną pozycję: górna krawędź monitora powinna znajdować się na wysokości Twoich oczu, a stopy powinny płasko spoczywać na podłodze.</p>
-                <p>Podsumowując, odzyskanie kontroli nad własną uwagą wymaga wysiłku i dyscypliny, ale benefity w postaci spokoju ducha, lepszego snu i wyższej produktywności są absolutnie tego warte. Zacznij od małych kroków już dzisiaj.</p>
+                <p>Zastosuj regułę 20-20-20. Co 20 minut spójrz na obiekt oddalony o co najmniej 6 metrów przez co najmniej 20 sekund. Pozwala to rozluźnić mięśnie rzęskowe oka, które pracują bez przerwy, gdy patrzysz na bliski monitor. Dodatkowo zadbaj o ergonomiczną pozycję: górna krawędź monitora powinna znajdować się na wysokości Twoich oczu.</p>
             </article>
         </div>
 
@@ -286,81 +292,127 @@
         <div id="artykul-2" class="page-section">
             <article>
                 <h1>Jak mądrze budować nawyki żywieniowe bez restrykcyjnych diet? Podstawy zdrowego rozsądku</h1>
-                <p class="intro"><strong>Wprowadzenie:</strong> Żyjemy w kulturze, która ma obsesję na punkcie idealnego wyglądu i ekspresowych rozwiązań. Co roku na rynku pojawiają się nowe, rewolucyjne diety, które obiecują spektakularną utratę wagi w zaledwie kilka tygodni. Dieta ketogeniczna, posty przerywane, diety sokowe czy eliminacja węglowodanów – wybór jest ogromny, ale statystyki są bezlitosne. Ponad 90% osób, które przechodzą na restrykcyjne diety odchudzające, w ciągu dwóch lat wraca do swojej początkowej wagi, często z nadwyżką, zmagając się z tak zwanym efektem jojo. Dlaczego tak się dzieje? Odpowiedź jest prosta: diety są rozwiązaniem tymczasowym, a nasze ciało i psychika potrzebują stałych zmian. Ten artykuł wyjaśnia, jak zbudować zdrowe relacje z jedzeniem na całe życie bez poczucia winy i wyrzeczeń.</p>
-                
-                <h2>1. Psychologia nawyków kontra kultura dietetyczna</h2>
-                <p>Głównym powodem porażki większości diet jest traktowanie ich jako zamkniętego w czasie okresu kary i wyrzeczeń. Myślimy: "Wytrzymam na tej diecie miesiąc, schudnę, a potem wrócę do normalnego życia". To myślenie z gruntu błędne, ponieważ to właśnie to "normalne życie" i dotychczasowe nawyki doprowadziły nas do miejsca, z którego chcemy uciec. Nasz mózg nie lubi gwałtownych zmian – każda radykalna restrykcja kaloryczna jest przez niego interpretowana jako okres głodu i zagrożenia życia, co uruchamia mechanizmy obronne, takie jak spowolnienie metabolizmu i wilczy apetyt.</p>
-                <p>Skuteczna zmiana sylwetki i poprawa zdrowia nie zachodzi w kuchni, ale przede wszystkim w naszej głowie. Zamiast wprowadzać rewolucję, musimy skupić się na ewolucji. Budowanie nawyków polega na wprowadzaniu tak małych modyfikacji, że nasz mózg prawie ich nie zauważa, dzięki czemu nie stawia oporu. Zamiana białego pieczywa na pełnoziarniste czy wypijanie szklanki wody przed każdym posiłkiem to drobne kroki, które po kilku miesiącach dają kolosalne rezultaty.</p>
-
-                <h2>2. Zasada 80/20 – sekret zdrowego balansu</h2>
-                <p>Jednym z najbardziej destrukcyjnych podejść w dietetyce jest myślenie czarno-białe, czyli zasada "wszystko albo nic". Dzielimy produkty na absolutnie dobre i absolutnie złe. Kiedy będąc na diecie, ulegniemy pokusie i zzjemy jeden kawałek pizzy lub czekolady, pojawia się poczucie winy oraz myśl: "Wszystko zepsute, cały dzień zmarnowany, więc mogę zjeść całą resztę".</p>
-                <p>Rozwiązaniem tego problemu jest **zasada 80/20**. Zakłada ona, że:</p>
+                <p><strong>Wprowadzenie do problematyki nowoczesnego odżywiania:</strong> Współczesny przemysł dietetyczny stał się potężną machina, która karmi się naszymi kompleksami. Jesteśmy nieustannie bombardowani sprzecznymi informacjami: jednego dnia tłuszcze są wrogiem, innego podstawą zdrowia. W tym informacyjnym chaosie zgubiliśmy zdrowy rozsądek oraz podstawowe zrozumienie ludzkiej fizjologii. Prawda jest taka, że restrykcyjne diety odchudzające działają na dłuższą metę destrukcyjnie. Ponad 90% osób wraca do swojej dawnej wagi w przeciągu kilkunastu miesięcy od zakończenia diety. Ten artykuł zrujnuje popularne mity dietetyczne i pokaże Ci, jak zbudować trwałe, zdrowe nawyki żywieniowe oparte na nauce.</p>
+                <h2>1. Dlaczego tradycyjne diety cud zawsze ponoszą porażkę? Biologia głodu</h2>
+                <p>Kiedy przechodzisz na popularną "dietę cud" polegającą na drastycznym obcięciu kaloryczności (np. dieta 1200 kcal), Twój organizm nie wie, że chcesz lepiej wyglądać. Twój organizm myśli, że nastała klęska żywiołowa, a dostęp do pożywienia został ograniczony. W odpowiedzi na to zagrożenie, ciało uruchamia potężny zestaw ewolucyjnych mechanizmów obronnych, których celem jest za wszelką cenę utrzymać Cię przy życiu.</p>
+                <p>Po pierwsze, następuje rekonfiguracja hormonalna. Poziom leptyny (hormonu sytości) gwałtownie spada, natomiast poziom ghreliny (hormonu głodu) szybuje w górę. Oznacza to, że Twój mózg zaczyna wysyłać permanentne sygnały nakazujące poszukiwanie wysokokalorycznego jedzenia. Po drugie, organizm przechodzi w tryb oszczędzania energii, co objawia się spowolnieniem podstawowej przemiany materii (BMR). Wracasz do normalnego jedzenia, ale osłabione ciało natychmiast odkłada nadwyżkę kaloryczną w postaci nowej tkanki tłuszczowej, tworząc idealne warunki dla bolesnego efektu jojo.</p>
+                <h2>2. Filozofia elastycznego żywienia – Potęga zasady 80/20</h2>
+                <p>Odpowiedzią nowoczesnej dietetyki opartej na dowodach jest model elastycznego żywienia, którego fundamentem jest zasada 80/20. To podejście dzieli dietę na dwie strefy:</p>
                 <ul>
-                    <li><strong>80% Twojej diety</strong> powinno pochodzić z nisko przetworzonych, bogatych w składniki odżywcze produktów: warzyw, owoców, pełnoziarnistych zbóż, chudego białka i zdrowych tłuszczów.</li>
-                    <li><strong>20% Twojej diety</strong> to przestrzeń na tzw. zachcianki i produkty rekreacyjne – ulubione słodycze, wyjście ze znajomymi na pizzę czy lody.</li>
+                    <li><strong>80% całkowitej energii:</strong> To baza Twojego zdrowia. Składa się z produktów o najwyższej gęstości odżywczej. Znajdziemy tu świeże warzywa, owoce jagodowe, pełnoziarniste kasze, chude mięso, ryby, jaja, rośliny strączkowe, orzechy oraz oliwę.</li>
+                    <li><strong>20% całkowitej energii:</strong> To strefa dla zdrowia psychicznego. Miejsce na Twoje ulubione potrawy, które tradycyjnie uważa się za "niezdrowe" – kawałek pizzy, kilka kostek czekolady, lody w upalny dzień.</li>
                 </ul>
-                <p>Dzięki takiemu podejściu zdejmujesz z siebie presję psychologiczną. Nic nie jest zakazane, więc nie kusi tak bardzo. Możesz jeść zdrowo, cieszyć się życiem towarzyskim i nie mieć wyrzutów sumienia z powodu zjedzenia ciastka.</p>
+                <h2>3. Trzy kluczowe filary metaboliczne, które musisz wdrożyć</h2>
+                <h3>A. Gęstość energetyczna a objętość posiłków</h3>
+                <p>Mózg ocenia stopień sytości m.in. na podstawie fizycznego rozciągnięcia ścian żołądka. Jeśli zjesz mały pączek, dostarczysz około 400 kcal, ale Twój żołądek ledwo to zauważy. Jeśli jednak zjesz potężną miskę sałaty z kurczakiem, dostarczysz tyle samo kalorii, ale mechanoreceptory wyślą silny sygnał: "jestem pełen".</p>
+                <h3>B. Białko i błonnik – królowie sytości</h3>
+                <p>Białko wykazuje najwyższy wskaźnik sytości spośród wszystkich makroskładników. Ponadto posiada wysoki efekt termiczny (TEF) – organizm zużywa dużo energii na samo jego strawienie! Połącz to z błonnikiem pokarmowym, który pęcznieje w żołądku. To duet, który trwale eliminuje problem podjadania.</p>
+            </article>
+        </div>
 
-                <h2>3. Filary zdrowego odżywiania, o których zapominamy</h2>
-                <p>Skupiając się na kaloriach i makroskładnikach, często zapominamy o absolutnych podstawach fizjologii, które mają kluczowe znaczenie dla naszego metabolizmu i samopoczucia.</p>
+        <!-- ================= ARTYKUŁ 3 (NOWY - FINANSE) ================= -->
+        <div id="artykul-3" class="page-section">
+            <article>
+                <h1>Niezależność finansowa od podstaw. Kompleksowy przewodnik po oszczędzaniu i inwestowaniu</h1>
+                <p><strong>Wprowadzenie:</strong> Pieniądze same w sobie nie dają szczęścia, ale dają coś absolutnie bezcennego – wolność wyboru, spokój ducha i poczucie bezpieczeństwa. Niestety, większość z nas żyje od pierwszego do pierwszego, nie posiadając żadnych oszczędności na czarną godzinę. W czasach niestabilności gospodarczej, wysokiej inflacji i zmieniającego się rynku pracy, brak podstawowej edukacji finansowej jest gigantycznym ryzykiem. Ten artykuł powstał po to, aby krok po kroku przeprowadzić Cię przez proces transformacji finansowej. Dowiesz się, jak skutecznie diagnozować dziury w domowym budżecie, jak zbudować niezniszczalną poduszkę finansową oraz jak zacząć stawiać pierwsze, bezpieczne kroki w świecie inwestowania kapitału.</p>
                 
-                <h3>A. Odpowiednie nawodnienie organizmu</h3>
-                <p>Woda jest środowiskiem dla wszystkich reakcji biochemicznych w naszym ciele. Bardzo często nasz ośrodek głodu w mózgu myli sygnał odwodnienia z głodem. Kiedy czujesz ochotę na przekąskę, bardzo możliwe, że Twoje ciało po prostu potrzebuje wody. Pij regularnie około 2-2.5 litra wody dziennie, a zauważysz przypływ energii i mniejszą ochotę na podjadanie między posiłkami.</p>
+                <h2>1. Psychologia konsumpcjonizmu – dlaczego wydajemy więcej niż zarabiamy?</h2>
+                <p>Zanim dotkniemy arkuszy kalkulacyjnych i liczb, musimy przyjrzeć się naszej psychice. Żyjemy w społeczeństwie permanentnej ekspozycji na sukces innych. Media społecznościowe wykreowały iluzję, że luksusowy styl życia, drogie samochody i zagraniczne wycieczki są standardem dostępnym dla każdego. Zjawisko to w socjologii nazywa się "inflacją stylu życia". Polega ono na tym, że wraz ze wzrostem naszych zarobków automatycznie rosną nasze wymagania i wydatki.</p>
+                <p>Dostajesz podwyżkę o 500 złotych? Zamiast te pieniądze zaoszczędzić, natychmiast przenosisz się do droższego mieszkania, kupujesz lepsze ubrania lub zaczas częściej jadać na mieście. W efekcie, mimo wyższych zarobków, na koniec miesiąca na Twoim koncie wciąż zostaje zero. Kluczem do bogactwa nie jest to, ile zarabiasz, ale to, ile z tych pieniędzy potrafisz zatrzymać. Musisz nauczyć się oddzielać realne potrzeby (bezpieczne schronienie, zdrowe jedzenie, opieka medyczna) od zachcianek napędzanych przez chwilowy skok dopaminy podczas zakupów.</p>
 
-                <h3>B. Rola błonnika i zdrowia jelit</h3>
-                <p>Błonnik pokarmowy, obecny w warzywach, owocach i produktach pełnoziarnistych, działa w naszym układzie pokarmowym jak miotła. Chłonie wodę, pęcznieje w żołądku i zapewnia długotrwałe uczucie sytości po posiłku. Ponadto błonnik jest pożywką dla naszych dobrych bakterii jelitowych, a mikrobiom jelitowy ma bezpośredni wpływ na nasz układ odpornościowy oraz... nastrój.</p>
+                <h2>2. Budowanie fundamentu: Trzystopniowy system bezpieczeństwa</h2>
+                <p>Inwestowanie na giełdzie lub kupowanie nieruchomości bez posiadania bazy finansowej to jak budowanie dachu domu, który nie ma fundamentów. Jeden niespodziewany kryzys może zrujnować całą Twoją konstrukcję. Twój plan obronny powinien składać się z trzech etapów:</p>
+                
+                <h3>Krok 1: Fundusz Awaryjny (Żelazna rezerwa)</h3>
+                <p>To kwota około 2000 do 5000 złotych trzymana na łatwo dostępnym koncie osobistym lub w gotówce. Przeznaczenie tych pieniędzy jest jedno: nagłe, nieprzewidziane sytuacje losowe. Awaria silnika w samochodzie, zepsuta lodówka w środku lata, nagła konieczność prywatnej wizyty u dentysty. Posiadanie funduszu awaryjnego sprawia, że taka sytuacja jest jedynie drobną niedogodnością, a nie tragedią życiową, która zmusza Cię do wzięcia wysoko oprocentowanej pożyczki gotówkowej.</p>
+                
+                <h3>Krok 2: Poduszka Finansowa (Fundusz bezpieczeństwa)</h3>
+                <p>To właściwe zabezpieczenie Twojego życia. Powinna wynosić równowartość Twoich 3- do 6-miesięcznych wydatków na życie. Jeśli na utrzymanie siebie i rodziny wydajesz miesięcznie 5000 złotych, Twoja poduszka powinna wynosić od 15 000 do 30 000 złotych. Te pieniądze mają dać Ci komfort psychiczny na wypadek utraty pracy, bankructwa firmy lub poważnych problemów zdrowotnych. Dzięki poduszce nie musisz brać pierwszej lepszej, fatalnie płatnej pracy pod presją czasu – masz kilka miesięcy na spokojne przebranżowienie się lub znalezienie idealnego wakatu.</p>
 
-                <div class="blockquote">
-                    "Nie musisz jeść idealnie, musisz jeść wystarczająco dobrze przez większość czasu. Konsekwencja bije perfekcję na głowę."
-                </div>
+                <h2>3. Wprowadzenie do inwestowania – Jak chronić kapitał przed inflacją?</h2>
+                <p>Kiedy zbudujesz już poduszkę finansową, trzymanie kolejnych nadwyżek pieniędzy na zwykłym lokacie lub koncie oszczędnościowym jest błędem. Inflacja, czyli spadek wartości pieniądza w czasie, powoduje, że Twoje realne oszczędności kurczą się z każdym rokiem. Aby temu zapobiec, musisz zatrudnić swoje pieniądze do pracy. Dla początkujących kluczowe są dwie zasady: **bezpieczeństwo i prostota**.</p>
+                <p>Jednym z najwygodniejszych i najbezpieczniejszych instrumentów dla osób zaczynających przygodę z rynkiem finansowym są detaliczne obligacje skarbowe (szczególnie te indeksowane inflacją). Gwarantem wypłaty jest państwo, a ich mechanizm chroni Twój kapitał przed utratą siły nabywczej. Kolejnym krokiem dla osób chcących wejść na giełdę bez konieczności codziennego śledzenia wykresów są fundusze typu <strong>ETF</strong> (Exchange Traded Funds). Kupując jeden certyfikat takiego funduszu, stajesz się współwłaścicielem setek największych firm na świecie (np. Apple, Microsoft, Coca-Cola). Inwestowanie pasywne za pomocą ETF-ów w horyzoncie długoterminowym (10-20 lat) historycznie zawsze przynosiło solidne zyski, dzięki potędze <strong>procentu składanego</strong>, gdzie wypracowane zyski są automatycznie reinwestowane i generują kolejne, jeszcze większe zyski.</p>
+                <p>Podsumowując: droga do niezależności finansowej nie wymaga geniuszu matematycznego. Wymaga dyscypliny, konsekwencji w kontrolowaniu wydatków i cierpliwości. Zacznij od małych kwot – najważniejsze to zacząć działać.</p>
+            </article>
+        </div>
 
-                <h2>4. Jak zacząć od dziś? Trzy proste zasady</h2>
-                <p>Zamiast szukać nowej diety od poniedziałku, wdróż te trzy nawyki już przy następnym posiłku. Po pierwsze: **wypełnij połowę swojego talerza warzywami**. Mają one mnóstwo witamin, mało kalorii i dużą objętość, co fizycznie wypełni Twój żołądek. Po drugie: **jedz uważnie i powoli**. Sygnał o sytości dociera z żołądka do mózgu po około 15-20 minutach. Jeśli jesz w pośpiechu przed ekranem telewizora, zjesz znacznie więcej, zanim poczujesz, że jesteś pełen. Po trzecie: **nie pij swoich kalorii**. Słodkie napoje gazowane, soki owocowe czy słodzone kawy dostarczają ogromnych ilości cukru, nie dając w zamian żadnego uczucia sytości.</p>
-                <p>Zdrowe odżywianie to nie wyrok ani pasmo udręki. To akt troski o własne ciało i umysł. Zmieniaj nawyki powoli, bądź dla siebie wyrozumiały, a zdrowa sylwetka będzie naturalnym skutkiem ubocznym Twojego nowego stylu życia.</p>
+        <!-- ================= ARTYKUŁ 4 (NOWY - SEN) ================= -->
+        <div id="artykul-4" class="page-section">
+            <article>
+                <h1>Biohacking snu i nocnej regeneracji. Jak nauka pozwala zmaksymalizować potencjał Twojego mózgu</h1>
+                <p><strong>Wprowadzenie:</strong> W dzisiejszym, nastawionym na permanentną produktywność świecie, sen stał się towarem deficytowym. Często traktujemy go jako stratę czasu, zbędny luksus lub oznakę słabości. Kultura popularna karmi nas hasłami w stylu: "Pracuj, podczas gdy inni śpią". Dzisiejsza medycyna i neurobiologia mają dla miłośników takiego podejścia jednoznaczną odpowiedź: chroniczne niedosypianie to powolne samobójstwo dla Twojego mózgu i ciała. Sen nie jest stanem wyłączenia organizmu – to najbardziej aktywny biologicznie okres, podczas którego dochodzi do naprawy komórkowej, konsolidacji pamięci, regulacji hormonalnej oraz oczyszczania mózgu z toksycznych białek. Ten artykuł to naukowe kompendium wiedzy o tym, jak radykalnie poprawić jakość swojego snu, by budzić się z maksymalnym poziomem energii.</p>
+                
+                <h2>1. Architektura snu i rytm dobowy – zegar, którego nie oszukasz</h2>
+                <p>Nasz sen nie jest jednolitym stanem. Składa się z cykli trwających około 90 minut, które powtarzają się 4-6 razy w ciągu nocy. Każdy cykl dzieli się na dwie główne fazy: **NREM** (sen głęboki, wolnofalowy) oraz **REM** (sen paradoksalny, faza marzeń sennych). Faza NREM jest kluczowa dla regeneracji fizycznej naszego ciała – to wtedy wydzielany jest hormon wzrostu, tkanki się naprawiają, a układ odpornościowy walczy z infekcjami. Faza REM z kolei odpowiada za regenerację psychiczną – to wtedy mózg porządkuje informacje zdobyte w ciągu dnia, segreguje wspomnienia i usuwa zbędne połączenia synaptyczne.</p>
+                <p>Wszystkim steruje nasz wewnętrzny **rytm dobowy**, zarządzany przez jądro nadskrzyżowaniowe w mózgu. Rytm ten reaguje przede wszystkim na sygnały świetlne. Kiedy rano światło słoneczne dociera do Twojej siatkówki, mózg blokuje wydzielanie melatoniny i zaczyna produkować **kortyzol**, który daje Ci energię do działania. Wieczorem, gdy robi się ciemno, proces ten powinien ulec odwróceniu. Jednak sztuczne oświetlenie i wszechobecne ekrany LED skutecznie oszukują nasz wewnętrzny zegar, wprowadzając organizm w stan permanentnego chaosu biochemicznego.</p>
+
+                <h2>2. Układ glimfatyczny – nocne sprzątanie mózgu</h2>
+                <p>Jednym z najważniejszych odkryć medycznych ostatnich lat było opisanie tzw. **układu glimfatycznego**. To unikalny system oczyszczania mózgu, który aktywuje się niemal wyłącznie podczas głębokich faz snu. W ciągu dnia, podczas intensywnej pracy intelektualnej, w przestrzeniach międzykomórkowych mózgu gromadzą się toksyczne produkty przemiany materii, w tym białka takie jak beta-amyloid i białko tau. Są to te same substancje, których nagromadzenie jest główną przyczyną rozwoju choroby Alzheimera i innych chorób neurodegeneracyjnych.</p>
+                <p>Podczas głębokiego snu komórki mózgowe kurczą się o około 60%, co umożliwia płynowi mózgowo-rdzeniowemu swobodne przepływanie przez tkanki i dosłowne "wypłukiwanie" tych toksycznych osadów. Jeśli regularnie zarywasz noce lub Twój sen jest płytki z powodu alkoholu czy stresu, układ glimfatyczny nie ma szans wykonać swojej pracy. Śmieci metaboliczne odkładają się w Twojej głowie, co rano odczuwasz jako mgłę mózgową, problemy z pamięcią i wahania nastroju.</p>
+
+                <h2>3. Cztery filary biohackingu snu – jak zoptymalizować noc?</h2>
+                <p>Poprawa jakości snu nie wymaga drogich gadżetów. Opiera się na kontrolowaniu zmiennych środowiskowych i biologicznych:</p>
+                
+                <h3>Filar 1: Światło jako najpotężniejszy regulator</h3>
+                <p>Zadbaj o ekspozycję na jasne światło słoneczne w ciągu pierwszych 30 minut po przebudzeniu – to idealnie nastroi Twój rytm dobowy. Wieczorem natomiast drastycznie ogranicz dopływ światła. Na 2 godziny przed snem wyłącz górne, ostre światła w domu, zastępując je lampkami bocznymi o ciepłej, pomarańczowej barwie. Jeśli musisz korzystać z komputera lub telefonu, zainstaluj aplikacje filtrujące światło niebieskie (np. f.lux) lub załóż dedykowane okulary blokujące to pasmo światła.</p>
+                
+                <h3>Filar 2: Temperatura otoczenia</h3>
+                <p>Aby organizm mógł wejść w fazę głębokiego snu, temperatura Twojego ciała musi spaść o około 1 stopień Celsjusza. Dlatego optymalna temperatura w sypialni to 17-19 stopni. Przed snem wywietrz dokładnie pokój. Gorąca kąpiel na godzinę przed pójściem do łóżka paradoksalnie pomaga – rozszerza naczynia krwionośne, co po wyjściu z wody skutkuje gwałtownym schłodzeniem wnętrza organizmu.</p>
+                
+                <h3>Filar 3: Dieta i substancje stymulujące</h3>
+                <p>Kofeina ma tzw. okres półtrwania wynoszący około 6 godzin. Oznacza to, że jeśli wypijesz mocną kawę o godzinie 16:00, o 22:00 w Twojej krwi wciąż krąży połowa zawartej w niej kofeiny, która skutecznie blokuje receptory adenozyny w mózgu, uniemożliwiając wejście w głębokie fazy regeneracji. Ostatnią kawę wypij maksimum do godziny 14:00. Unikaj także alkoholu przed snem – choć pomaga zasnąć, to całkowicie dewastuje i fragmentuje strukturę snu, blokując fazę REM.</p>
+                
+                <p>Wdrożenie tych prostych, darmowych nawyków przyniesie Ci więcej korzyści niż jakakolwiek suplementacja. Sen to najtańszy i najskuteczniejszy lek na świecie – zacznij z niego mądrze korzystać.</p>
             </article>
         </div>
 
         <!-- ================= STRONA O NAS ================= -->
         <div id="o-nas" class="page-section">
-            <h2>O naszej redakcji</h2>
-            <p>Witaj w <strong>Strefie Wiedzy</strong>! Jesteśmy niezależnym portalem internetowym stworzonym z pasji do szeroko pojętego rozwoju osobistego, zdrowego stylu życia i nowoczesnej psychologii. Nasz zespół składa się z pasjonatów i praktyków, którzy nie lubią powielać mitów i tanich sensacji. Każdy artykuł tworzony jest w oparciu o rzetelny research i sprawdzone fakty.</p>
-            <p>W dobie szumu informacyjnego stawiamy na jakość, a nie na ilość. Chcemy dostarczać naszym czytelnikom unikalną wartość – wiedzę podaną w przystępny sposób, którą można natychmiast przekuć w praktyczne działanie. Wierzymy, że małe, codzienne zmiany w nawykach mają potężną siłę i prowadzą do lepszego, bardziej świadomego życia.</p>
-            <p>Nasz portal jest w pełni zoptymalizowany dla wygody czytelników i wspierany przez zaufanych partnerów reklamowych, w tym program Google AdSense, co pozwala nam na bezpłatne dostarczanie treści najwyższej jakości. Rozgość się i zostań z nami na dłużej!</p>
+            <h2>O naszej redakcji i misji portalu</h2>
+            <p>Witaj w <strong>Mega Portalu Wiedzy</strong> – niezależnym portalu wydawniczym, stworzonym z myślą o czytelnikach, którzy poszukują w internecie czegoś więcej niż tylko powierzchownych opinii i clickbaitowych nagłówków. Nasza witryna narodziła się z buntu przeciwko wszechobecnemu szumowi informacyjnemu i zalewowi niskiej jakości treści generowanych masowo bez dbałości o fakty.</p>
+            <p>Jesteśmy zespołem publicystów, pasjonatów nauki, dietetyków i obserwatorów trendów cyfrowych. Naszą naczelną zasadą jest dostarczanie wyczerpujących, drobiazgowo opracowanych artykułów, które wyczerpują dany temat od podszewki. Wierzymy, że nasi czytelnicy są ludźmi inteligentnymi, którzy cenią swój czas i wymagają tekstów o wysokiej wartości merytorycznej oraz nienagannej strukturze językowej.</p>
+            <p>Nasz portal finansowany jest z transparentnych programów reklamowych, w tym z globalnej sieci partnerskiej <strong>Google AdSense</strong>. Dzięki obecności reklam na stronie jesteśmy w stanie utrzymać niezależność redakcyjną i dostarczać Wam potężne dawki wiedzy całkowicie za darmo. Każda reklama wyświetlana w naszym serwisie jest dobierana z dbałością o estetykę i wygodę użytkownika, nie zakłócając procesu czytania.</p>
+            <p>Nasz zespół stale się rozwija, a publikowane przez nas analizy są regularnie aktualizowane, by odpowiadać najnowszym doniesieniom naukowym. Dziękujemy za zaufanie, za każde udostępnienie naszych tekstów i za to, że wspólnie z nami budujesz przestrzeń mądrego internetu.</p>
         </div>
 
         <!-- ================= STRONA KONTAKT ================= -->
         <div id="kontakt" class="page-section">
-            <h2>Kontakt z nami</h2>
-            <p>Masz pytania dotyczące opublikowanych artykułów? Chcesz podzielić się swoją opinią lub zaproponować temat kolejnego wpisu? A może jesteś zainteresowany współpracą reklamową? Jesteśmy otwarci na wiadomości i sugestie naszych czytelników oraz partnerów biznesowych.</p>
-            <p>Możesz się z nami skontaktować bezpośrednio poprzez nasz oficjalny adres mailowy:</p>
-            <p>📧 <strong>kontakt@twojadomena.pl</strong></p>
-            <p>Na wszystkie zapytania staramy się odpowiadać w ciągu 24-48 godzin w dni robocze. Administratorem Twoich danych osobowych podanych w korespondencji e-mail jest redakcja bloga Strefa Wiedzy. Dane są przetwarzane wyłącznie w celu udzielenia odpowiedzi na Twoje zapytanie.</p>
+            <h2>Skontaktuj się z nami</h2>
+            <p>Komunikacja z naszą społecznością jest dla nas absolutnym priorytetem. Jeśli masz pytania dotyczące poruszanych przez nas tematów, znalazłeś w tekście błąd merytoryczny, lub chcesz zaproponować zagadnienie, które powinniśmy rozwinąć w kolejnym artykułach – jesteśmy do Twojej pełnej dyspozycji.</p>
+            
+            <h3>Współpraca komercyjna i redakcyjna</h3>
+            <p>Zapraszamy do współpracy marki, agencje marketingowe oraz autorów zewnętrznych, których filozofia życiowa i biznesowa pokrywa się z wartościami naszego portalu. Oferujemy szeroki wachlarz usług reklamowych: od artykułów sponsorowanych o najwyższej gęstości merytorycznej, przez recenzje produktów, aż po dedykowane kampanie wizerunkowe. Nie publikujemy materiałów niskiej jakości – zależy nam na realnej korzyści dla naszego czytelnika.</p>
+            
+            <p><strong>Napisz do nas:</strong></p>
+            <p>📩 <strong>kontakt@twojadomena.pl</strong></p>
+            <p>Dokładamy wszelkich starań, aby odpowiadać na każdą wiadomość w czasie nieprzekraczającym 24-48 godzin (w dni robocze). Dbamy o bezpieczeństwo korespondencji – wysyłając do nas e-mail, masz pewność, że Twoje dane są chronione zgodnie z najwyższymi standardami prawnymi i regulacjami RODO.</p>
         </div>
 
         <!-- ================= STRONA POLITKYKA PRYWATNOŚCI ================= -->
         <div id="polityka" class="page-section">
             <h2>Polityka Prywatności i Plików Cookies</h2>
-            <p>Niniejsza Polityka Prywatności określa zasady przetwarzania i ochrony danych osobowych oraz wykorzystywania plików cookies w serwisie internetowym Strefa Wiedzy (dostępnym pod adresem: twojadomena.pl). Dbamy o bezpieczeństwo Twoich danych i szanujemy Twoją prywatność.</p>
+            <p>Niniejszy dokument stanowi wyraz troski o prywatność użytkowników odwiedzających nasz portal i określa reguły zbierania, przetwarzania oraz ochrony danych osobowych, a także stosowania plików cookies (ciasteczek).</p>
             
             <h3>1. Administrator Danych Osobowych</h3>
-            <p>Administratorem danych osobowych zbieranych w serwisie jest redakcja portalu Strefa Wiedzy. Dane przetwarzane są zgodnie z obowiązującymi przepisami prawa, w tym zgodnie z RODO.</p>
+            <p>Administratorem danych osobowych zbieranych za pośrednictwem serwisu internetowego jest redakcja portalu. Przetwarzanie danych odbywa się w pełnej zgodzie z Rozporządzeniem Parlamentu Europejskiego i Rady (UE) 2016/679 (RODO) oraz polską ustawą o ochronie danych osobowych.</p>
             
-            <h3>2. Pliki Cookies i Reklamy Google AdSense (Wymóg Prawny)</h3>
-            <p>Nasz serwis korzysta z zewnętrznych dostawców reklam, w tym firmy <strong>Google Inc.</strong>, w celu wyświetlania reklam dopasowanych do preferencji użytkowników.</p>
+            <h3>2. Reklamy Google AdSense i Pliki Cookies Stron Trzecich (Wymóg Prawny Google)</h3>
+            <p>Nasz portal korzysta z usług zewnętrznych dostawców systemów reklamowych, w tym z technologii dostarczanej przez firmę <strong>Google Inc.</strong> (1600 Amphitheatre Parkway, Mountain View, CA 94043, USA).</p>
             <ul>
-                <li>Google, jako dostawca zewnętrzny, wykorzystuje pliki cookie (w tym pliki cookie DoubleClick) do wyświetlania reklam w tej witrynie na podstawie poprzednich odwiedzin użytkownika w tej lub innych witrynach internetowych.</li>
-                <li>Dzięki plikom cookie do celów reklamowych firma Google i jej partnerzy mogą wyświetlać użytkownikom konkretne reklamy na podstawie ich wizyt na naszym blogu i innych stronach.</li>
-                <li>Użytkownicy mogą zrezygnować ze spersonalizowanych reklam. W tym celu należy przejść do strony <a href="https://myadcenter.google.com/" target="_blank" rel="noopener">Ustawienia reklam Google</a>. Alternatywnie możesz wyłączyć stosowanie plików cookie stron trzecich do celów reklam spersonalizowanych, odwiedzając stronę <a href="https://www.aboutcookies.org/" target="_blank" rel="noopener">aboutcookies.org</a>.</li>
+                <li>Firma Google, jako dostawca zewnętrzny, wykorzystuje pliki cookie do wyświetlania materiałów reklamowych w obrębie tego serwisu na podstawie wcześniejszych wizyt użytkownika w tej witrynie oraz innych stronach internetowych.</li>
+                <li>Wykorzystanie plików cookie DoubleClick umożliwia firmie Google oraz jej partnerom wyświetlanie spersonalizowanych reklam opartych na unikalnych zainteresowaniach użytkownika i jego historii przeglądania.</li>
+                <li>Każdy użytkownik ma pełne i niezbywalne prawo do rezygnacji ze spersonalizowanych reklam. Aby zarządzać swoimi preferencjami reklamowymi lub całkowicie wyłączyć personalizację, należy odwiedzić oficjalną stronę <a href="https://myadcenter.google.com/" target="_blank" rel="noopener">Ustawienia reklam Google</a>.</li>
+                <li>Możez również zarządzać plikami cookie innych dostawców zewnętrznych, odwiedzając platformy niezależne, takie jak <a href="https://www.aboutcookies.org/" target="_blank" rel="noopener">aboutcookies.org</a> lub wyłączając obsługę ciasteczek w ustawieniach swojej przeglądarki internetowej.</li>
             </ul>
 
-            <h3>3. Logi serwera</h3>
-            <p>Korzystanie z witryny wiąże się z przesyłaniem zapytań do serwera, na którym przechowywana jest strona. Każde zapytanie zapisywane jest w logach serwera, które obejmują m.in. adres IP, datę i czas systemowy, informacje o przeglądarce internetowej i systemie operacyjnym. Dane te nie są kojarzone z konkretnymi osobami i służą wyłącznie celom administracyjnym.</p>
+            <h3>3. Logi serwera i bezpieczeństwo teleinformatyczne</h3>
+            <p>Korzystanie z witryny wiąże się z przesyłaniem zapytań do serwera, na którym przechowywana jest strona. Każde zapytanie zapisywane jest w logach serwera, które obejmują m.in. adres IP, datę i czas systemowy, informacje o przeglądarce internetowej i systemie operacyjnym. Dane te służą wyłącznie celom administracyjnym, statystycznym oraz zapewnieniu bezpieczeństwa przed atakami hakerskimi i nie są kojarzone z konkretnymi osobami fizycznymi.</p>
         </div>
 
     </div>
 
     <footer>
-        <p>&copy; 2026 Strefa Wiedzy. Wszelkie prawa zastrzeżone.</p>
+        <p>&copy; 2026 Mega Portal Wiedzy. Witryna zoptymalizowana pod kątem wytycznych programowych dla wydawców sieciowych.</p>
         <div>
             <a href="#o-nas" onclick="switchPage('o-nas')">O nas</a> | 
             <a href="#kontakt" onclick="switchPage('kontakt')">Kontakt</a> | 
@@ -368,29 +420,25 @@
         </div>
     </footer>
 
-    <!-- ================= SKRYPT JAVASCRIPT (SPA LOGIC) ================= -->
+    <!-- ================= SKRYPT JAVASCRIPT ================= -->
     <script>
         function switchPage(sectionId) {
-            // Ukryj wszystkie sekcje
             const sections = document.querySelectorAll('.page-section');
             sections.forEach(section => {
                 section.classList.remove('active');
             });
 
-            // Pokaż wybraną sekcję
             const activeSection = document.getElementById(sectionId);
             if (activeSection) {
                 activeSection.classList.add('active');
             }
 
-            // Przewiń na górę strony po zmianie widoku
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
             });
         }
 
-        // Obsługa bezpośrednich linków z hashem przy przeładowaniu (np. index.html#kontakt)
         window.addEventListener('DOMContentLoaded', () => {
             const hash = window.location.hash.replace('#', '');
             if (hash) {
