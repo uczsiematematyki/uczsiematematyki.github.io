@@ -3,771 +3,401 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Multi-Matma Interaktywna - Nauka przez Zabawę</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+    <title>Strefa Wiedzy - Blog o Rozwoju i Zdrowym Stylu Życia</title>
     <style>
         :root {
-            --bg-play: #f3f9f1;
-            --main-green: #4caf50;
-            --dark-green: #2e7d32;
-            --accent-orange: #ff9800;
-            --bubble-purple: #9c27b0;
-            --card-bg: #ffffff;
-            --text-color: #333333;
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --text-color: #2c3e50;
+            --light-bg: #f8f9fa;
+            --white: #ffffff;
         }
 
         body {
-            font-family: 'Comic Sans MS', 'Chalkboard SE', 'Segoe UI', sans-serif;
-            margin: 0;
-            background: linear-gradient(135deg, #f5fdf4 0%, #e8f5e9 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
             color: var(--text-color);
-            background-attachment: fixed;
-        }
-
-        /* NAGŁÓWEK DLA DZIECI */
-        header {
-            background: linear-gradient(to bottom, #4caf50, #388e3c);
-            color: white;
-            padding: 15px 4%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 6px 0 #1b5e20;
-            border-bottom-left-radius: 20px;
-            border-bottom-right-radius: 20px;
-        }
-        .logo {
-            font-size: 26px;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            cursor: pointer;
-            text-shadow: 2px 2px 0px #1b5e20;
-        }
-        .logo i {
-            font-size: 32px;
-            color: #ccff90;
-        }
-        .points-display {
-            background: #ff9800;
-            padding: 10px 22px;
-            border-radius: 30px;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 20px;
-            box-shadow: 0 4px 0 #e65100;
-            border: 2px solid white;
-            text-shadow: 1px 1px 0px rgba(0,0,0,0.2);
-        }
-        .points-display i {
-            color: #ffd700;
-            animation: bounce 2s infinite alternate;
-        }
-
-        @keyframes bounce {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(-5px); }
-        }
-
-        /* PASEK KLAS */
-        .grade-nav {
-            background: #ffffff;
-            padding: 15px;
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            flex-wrap: wrap;
-            border-bottom: 5px solid #ddd;
-            margin-bottom: 20px;
-        }
-        .grade-item {
-            text-align: center;
-            color: white;
-            font-weight: bold;
-            padding: 12px;
-            border-radius: 20px;
-            width: 110px;
-            transition: all 0.2s ease;
-            cursor: pointer;
-            border: 3px solid transparent;
-            box-shadow: 0 4px 0 rgba(0,0,0,0.15);
-        }
-        .grade-item:hover {
-            transform: translateY(-5px) scale(1.05);
-        }
-        .grade-item i {
-            font-size: 28px;
-            display: block;
-            margin-bottom: 5px;
-        }
-        .grade-item span {
-            font-size: 12px;
-            text-transform: uppercase;
-            display: block;
-        }
-        .grade-item.active {
-            border-color: #333;
-            transform: scale(1.08);
-            box-shadow: 0 6px 0 rgba(0,0,0,0.25);
-        }
-
-        /* UKŁAD STRONY */
-        .container {
-            display: grid;
-            grid-template-columns: 310px 1fr;
-            gap: 25px;
-            padding: 0 4% 40px 4%;
-            max-width: 1440px;
-            margin: 0 auto;
-        }
-
-        /* MENU BOCZNE */
-        .sidebar {
-            background: #ffffff;
-            padding: 20px;
-            border-radius: 24px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.06);
-            border: 3px solid #dbedd6;
-            height: fit-content;
-        }
-        .sidebar h3 {
-            margin-top: 0;
-            color: var(--dark-green);
-            border-bottom: 3px solid #c8e6c9;
-            padding-bottom: 12px;
-            font-size: 20px;
-            text-align: center;
-        }
-        .menu-list {
-            list-style: none;
-            padding: 0;
+            background-color: var(--light-bg);
             margin: 0;
+            padding: 0;
         }
-        .menu-list li {
-            padding: 12px 10px;
-            border-bottom: 1px dashed #e0e0e0;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+
+        header {
+            background: linear-gradient(135deg, var(--primary-color), #1a252f);
+            color: var(--white);
+            text-align: center;
+            padding: 3rem 1rem;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            margin: 10px 0 0 0;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        nav {
+            background-color: #111a24;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 0 5px;
+            font-weight: 600;
+            display: inline-block;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--secondary-color);
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 40px auto;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+
+        /* Style dla sekcji (podstron) */
+        .page-section {
+            display: none; /* Domyślnie ukryte, aktywowane przez JS */
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            animation: fadeIn 0.5s ease;
+        }
+
+        .page-section.active {
+            display: block;
+        }
+
+        /* Style dla listy wpisów na stronie głównej */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        .post-card {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .post-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .post-card h2 {
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: var(--white);
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: background 0.3s ease;
             cursor: pointer;
-            font-size: 14px;
-            transition: all 0.2s;
-            border-radius: 10px;
-            margin-bottom: 4px;
+            border: none;
         }
-        .menu-list li:hover {
-            background: #f1f8e9;
-            color: var(--dark-green);
+
+        .btn:hover {
+            background-color: #2980b9;
+        }
+
+        /* Formatowanie artykułów blogowych */
+        article h1 {
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--secondary-color);
+            padding-bottom: 15px;
+            margin-top: 0;
+        }
+
+        article h2 {
+            font-size: 1.6rem;
+            color: var(--primary-color);
+            margin-top: 35px;
+            border-left: 5px solid var(--secondary-color);
             padding-left: 15px;
         }
-        .menu-list li.active-topic {
-            background: var(--main-green) !important;
-            color: white !important;
-            font-weight: bold;
-            box-shadow: 0 3px 0 #2e7d32;
-        }
-        .badge-new {
-            background: #ff5722;
-            color: white;
-            font-size: 9px;
-            padding: 3px 6px;
-            border-radius: 6px;
-            font-weight: bold;
+
+        article h3 {
+            font-size: 1.25rem;
+            color: #2980b9;
+            margin-top: 25px;
         }
 
-        /* INTERFEJS GRY */
-        .quiz-wrapper {
-            background: white;
-            border-radius: 28px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-            padding: 35px;
-            text-align: center;
-            border: 4px solid #c8e6c9;
-            position: relative;
+        article p {
+            margin-bottom: 20px;
+            text-align: justify;
         }
-        .meta-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 3px dashed #e8f5e9;
-            padding-bottom: 20px;
+
+        article ul, article ol {
             margin-bottom: 25px;
+            padding-left: 30px;
         }
-        .class-badge {
-            background: var(--accent-orange);
-            color: white;
-            padding: 8px 20px;
-            border-radius: 15px;
-            font-weight: bold;
-            font-size: 18px;
-            box-shadow: 0 3px 0 #e65100;
-        }
-        .topic-title {
-            color: var(--dark-green);
-            font-size: 24px;
-            font-weight: bold;
-        }
-        .instruction {
-            font-size: 18px;
-            color: #555;
-            background: #f1f8e9;
-            padding: 10px;
-            border-radius: 12px;
-            display: inline-block;
+
+        article li {
             margin-bottom: 10px;
         }
 
-        .equation {
-            font-size: 76px;
-            font-weight: bold;
-            margin: 35px 0;
-            color: #1a237e;
-            text-shadow: 3px 3px 0px #e8eaf6;
-            letter-spacing: 3px;
-        }
-
-        .options {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin-bottom: 35px;
-        }
-        .btn-option {
-            background: linear-gradient(to bottom, #aed581, #8bc34a);
-            color: #2e7d32;
-            font-size: 44px;
-            font-weight: bold;
-            border: 3px solid #7cb342;
-            border-radius: 20px;
-            padding: 15px 45px;
-            min-width: 150px;
-            cursor: pointer;
-            transition: all 0.1s ease;
-            box-shadow: 0 6px 0 #558b2f;
-        }
-        .btn-option:hover {
-            transform: translateY(-2px);
-            filter: brightness(1.05);
-        }
-        .btn-option:active {
-            transform: translateY(4px);
-            box-shadow: 0 2px 0 #558b2f;
-        }
-
-        .pineapple-container {
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            margin: 25px 0 10px 0;
-            min-height: 50px;
-        }
-        .pineapple {
-            font-size: 36px;
-            color: #e0e0e0;
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), color 0.3s;
-        }
-        .pineapple.active-fruit {
-            color: #ffb300;
-            transform: scale(1.25) rotate(5deg);
-            filter: drop-shadow(0 3px 5px rgba(0,0,0,0.15));
-        }
-
-        .stats-bar {
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-            font-size: 16px;
-            font-weight: bold;
-            margin-top: 30px;
-        }
-        .stat-box {
-            padding: 8px 20px;
-            border-radius: 12px;
-            color: white;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            box-shadow: 0 4px 0 rgba(0,0,0,0.1);
-        }
-        .stat-box.correct { background-color: #4caf50; }
-        .stat-box.wrong { background-color: #f44336; }
-        
-        #feedback {
-            font-size: 24px;
-            font-weight: bold;
-            height: 35px;
-            margin: 15px 0;
-        }
-
-        .main-menu-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-            gap: 25px;
-            margin-top: 25px;
-        }
-        .class-box {
-            background: white;
-            border-radius: 24px;
-            border: 3px solid #e0e0e0;
-            overflow: hidden;
-            box-shadow: 0 6px 12px rgba(0,0,0,0.04);
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        .class-box:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 12px 20px rgba(0,0,0,0.08);
-        }
-        .class-box-header {
-            padding: 18px;
-            text-align: center;
-            color: white;
-            font-weight: bold;
-            font-size: 24px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 12px;
-        }
-        .class-box-body {
+        .blockquote {
+            background-color: #f1f2f6;
+            border-left: 5px solid var(--primary-color);
             padding: 20px;
-        }
-        .class-box-body ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .class-box-body li {
-            padding: 8px 0;
-            font-size: 14px;
-            border-bottom: 1px dashed #f0f0f0;
-            color: #555;
+            margin: 30px 0;
+            font-style: italic;
         }
 
-        .hidden { display: none !important; }
+        footer {
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 30px 10px;
+            margin-top: 60px;
+        }
 
-        @media (max-width: 950px) {
-            .container { grid-template-columns: 1fr; }
-            .equation { font-size: 56px; }
-            .btn-option { font-size: 32px; padding: 12px 25px; }
+        footer p {
+            margin: 0 0 15px 0;
+        }
+
+        footer a {
+            color: #bdc3c7;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 0.9rem;
+        }
+
+        footer a:hover {
+            color: var(--white);
+            text-decoration: underline;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 600px) {
+            nav a { padding: 8px 10px; font-size: 0.9rem; }
+            .page-section { padding: 20px; }
+            article h1 { font-size: 1.7rem; }
         }
     </style>
 </head>
 <body>
 
-<header>
-    <div class="logo" onclick="showMainMenu()"><i class="fas fa-graduation-cap"></i> MULTI-MATMA</div>
-    <div class="top-bar-right">
-        <div class="points-display">
-            <i class="fas fa-star"></i>
-            <span id="user-points">0</span> GWIAZDEK
-        </div>
-    </div>
-</header>
+    <header>
+        <h1>Strefa Wiedzy</h1>
+        <p>Inspiracja, Rozwój, Zdrowie – Twój codzienny przewodnik po lepszym jutrze</p>
+    </header>
 
-<nav class="grade-nav">
-    <div class="grade-item" id="nav-0" style="background: #9c27b0;" onclick="changeClass(0)"><i class="fas fa-bug"></i><span>Zerówka</span></div>
-    <div class="grade-item" id="nav-1" style="background: #e91e63;" onclick="changeClass(1)"><i class="fas fa-elephant"></i><span>Klasa 1</span></div>
-    <div class="grade-item" id="nav-2" style="background: #03a9f4;" onclick="changeClass(2)"><i class="fas fa-hippo"></i><span>Klasa 2</span></div>
-    <div class="grade-item" id="nav-3" style="background: #4caf50;" onclick="changeClass(3)"><i class="fas fa-otter"></i><span>Klasa 3</span></div>
-    <div class="grade-item" id="nav-4" style="background: #ff9800;" onclick="changeClass(4)"><i class="fas fa-monkey"></i><span>Klasa 4</span></div>
-    <div class="grade-item" id="nav-5" style="background: #ff5722;" onclick="changeClass(5)"><i class="fas fa-kangaroo"></i><span>Klasa 5</span></div>
-    <div class="grade-item" id="nav-6" style="background: #795548;" onclick="changeClass(6)"><i class="fas fa-lion"></i><span>Klasa 6</span></div>
-    <div class="grade-item" id="nav-7" style="background: #009688;" onclick="changeClass(7)"><i class="fas fa-frog"></i><span>Klasa 7</span></div>
-    <div class="grade-item" id="nav-8" style="background: #3f51b5;" onclick="changeClass(8)"><i class="fas fa-fish"></i><span>Klasa 8</span></div>
-</nav>
+    <nav>
+        <a href="#home" onclick="switchPage('home')">Strona Główna</a>
+        <a href="#artykul-1" onclick="switchPage('artykul-1')">Artykuł 1</a>
+        <a href="#artykul-2" onclick="switchPage('artykul-2')">Artykuł 2</a>
+        <a href="#o-nas" onclick="switchPage('o-nas')">O nas</a>
+        <a href="#kontakt" onclick="switchPage('kontakt')">Kontakt</a>
+    </nav>
 
-<div class="container">
-    
-    <aside class="sidebar">
-        <h3 id="sidebar-title">Spis Tematów</h3>
-        <ul class="menu-list" id="sidebar-menu"></ul>
-    </aside>
+    <div class="container">
 
-    <main>
-        <div id="quiz-screen" class="quiz-wrapper">
-            <div class="meta-header">
-                <div class="class-badge" id="class-badge">Klasa 3</div>
-                <div class="topic-title" id="quiz-title">Ładowanie tematu...</div>
-            </div>
-            
-            <div class="instruction" id="quiz-instruction">Wybierz właściwy wynik!</div>
-            
-            <div id="equation" class="equation">0 + 0 =</div>
-            
-            <div class="options" id="options-container"></div>
+        <!-- ================= STRONA GŁÓWNA ================= -->
+        <div id="home" class="page-section active">
+            <div class="blog-grid">
+                <div class="post-card">
+                    <h2>Cyfrowy detoks i higiena pracy przed ekranem. Jak odzyskać focus w świecie powiadomień?</h2>
+                    <p>Przeciętny człowiek spędza przed ekranami urządzeń cyfrowych ponad jedną trzecią swojego dnia. Dowiedz się, jak nadmiar bodźców wpływa na Twój mózg oraz poznaj sprawdzone techniki odzyskiwania koncentracji...</p>
+                    <button class="btn" onclick="switchPage('artykul-1')">Czytaj artykuł</button>
+                </div>
 
-            <div class="pineapple-container" id="pineapple-bar"></div>
-            <div style="font-size: 13px; color: #666; font-weight: bold; margin-bottom: 15px; letter-spacing: 0.5px;">
-                ZBIERZ <span id="required-combo">6</span> ANANASÓW ZA POPRAWNE ODPOWIEDZI POD RZĄD!
-            </div>
-
-            <div id="feedback"></div>
-
-            <div class="stats-bar">
-                <div class="stat-box correct"><i class="fas fa-thumbs-up"></i> DOBRZE: <span id="score-correct">0</span></div>
-                <div class="stat-box wrong"><i class="fas fa-times-circle"></i> POULI: <span id="score-wrong">0</span></div>
+                <div class="post-card">
+                    <h2>Jak mądrze budować nawyki żywieniowe bez restrykcyjnych diet? Podstawy zdrowego rozsądku</h2>
+                    <p>Zapomnij o głodówkach i rewolucyjnych dietach cud, które przynoszą efekt jojo. Kluczem do trwałego zdrowia i szczupłej sylwetki jest zrozumienie procesów metabolicznych oraz psychologii nawyków...</p>
+                    <button class="btn" onclick="switchPage('artykul-2')">Czytaj artykuł</button>
+                </div>
             </div>
         </div>
 
-        <div id="main-menu-screen" class="hidden">
-            <h2 style="text-align: center; margin-top: 0; color: var(--dark-green); font-size: 28px;">Wybierz swoją klasę i zacznij zabawę!</h2>
-            <div class="main-menu-grid" id="main-grid"></div>
+        <!-- ================= ARTYKUŁ 1 ================= -->
+        <div id="artykul-1" class="page-section">
+            <article>
+                <h1>Cyfrowy detoks i higiena pracy przed ekranem. Jak odzyskać focus w świecie powiadomień?</h1>
+                <p class="intro"><strong>Wprowadzenie:</strong> Żyjemy w czasach bezprecedensowego eksperymentu technologicznego. Nigdy w historii ludzkości nasz mózg nie musiał przetwarzać tak gigantycznej ilości danych w tak krótkim czasie. Smartfony, tablety, komputery i wszechobecne social media stały się integralną częścią naszej codzienności, oferując natychmiastowy dostęp do wiedzy i rozrywki. Jednak ta wygoda ma swoją mroczną cenę, którą płacimy każdego dnia. Jest nią nasza zdolność do głębokiej koncentracji, stabilność emocjonalna oraz zdrowie fizyczne. Niniejszy artykuł stanowi wyczerpującą analizę zjawiska przebodźcowania cyfrowego oraz praktyczny przewodnik, jak wdrożyć higienę ekranową i przeprowadzić skuteczny cyfrowy detoks.</p>
+                
+                <h2>1. Mechanizm dopaminowej pułapki – dlaczego tak trudno odłożyć telefon?</h2>
+                <p>Aby skutecznie walczyć z uzależnieniem od technologii, musimy najpierw zrozumieć, jak aplikacje mobilne wpływają na chemię naszego mózgu. Projektanci platform społecznościowych oraz gier mobilnych zatrudniają sztaby neurobiologów, których jedynym zadaniem jest zatrzymanie naszej uwagi na jak najdłuższy czas. Kluczowym narzędziem w tej walce jest neuroprzekaźnik o nazwie <strong>dopamina</strong>, powszechnie nazywany hormonem przyjemności.</p>
+                <p>Wbrew obiegowej opinii, dopamina nie odpowiada bezpośrednio za uczucie satysfakcji, lecz za <em>oczekiwanie nagrody</em>. Za każdym razem, gdy widzisz czerwoną ikonkę powiadomienia, słyszysz dźwięk wiadomości lub odświeżasz tablicę na Instagramie, Twój mózg otrzymuje mikroskopijny strzał dopaminy. Nie wiesz, co tam znajdziesz – może to ważny mail, może polubienie zdjęcia, a może nic istotnego. Ten mechanizm zmiennego harmonogramu nagród jest dokładnie tym samym mechanizmem, który napędza uzależnienie od hazardu w kasynach. W efekcie stajemy się więźniami własnych telefonów, kompulsywnie sprawdzając je nawet kilkadziesiąt razy na godzinę.</p>
+
+                <h2>2. Negatywne skutki chronicznego przebodźcowania ekranami</h2>
+                <p>Ciągła obecność w sieci i nieustanna wielozadaniowość (multitasking) prowadzą do głębokich zmian w strukturze naszej uwagi. Ludzki mózg nie jest ewolucyjnie przystosowany do jednoczesnego pisania maila, odpisywania na komunikatorze i słuchania podcastu. To, co nazywamy wielozadaniowością, jest w rzeczywistości niezwykle szybkim i wycieńczającym przełączaniem się między zadaniami (ang. <em>task-switching</em>), co drastycznie obniża efektywność i drastycznie zwiększa poziom stresu.</p>
+                
+                <h3>A. Spadek zdolności do pracy głębokiej (Deep Work)</h3>
+                <p>Praca głęboka to umiejętność skupienia się na trudnym poznawczo zadaniu bez jakichkolwiek rozpraszaczy. To właśnie w tym stanie powstają najlepsze teksty, programy komputerowe czy plany biznesowe. Niestety, permanentne wystawienie na powiadomienia sprawia, że tracimy tę zdolność. Nasz mózg oducza się nudy – w każdej wolnej sekundzie (w kolejce, na czerwonym świetle) sięgamy po smartfon, przez co tracimy umiejętność dłuższego utrzymania jednej myśli.</p>
+
+                <h3>B. Degradacja jakości snu i bezsenność</h3>
+                <p>Ekrany emitują tzw. <strong>światło niebieskie</strong> (HEV), które dla naszego organizmu jest sygnałem tożsamym ze światłem słonecznym. Ekspozycja na to światło w godzinach wieczornych blokuje wydzielanie <strong>melatoniny</strong> – hormonu odpowiedzialnego za zdrowy sen. W konsekwencji mamy problemy z zasypianiem, a sam sen jest płytki, pozbawiony kluczowych faz regeneracji głębokiej, co skutkuje chronicznym zmęczeniem od samego rana.</p>
+
+                <h2>3. Jak przeprowadzić skuteczny cyfrowy detoks? Plan działania</h2>
+                <p>Całkowite odcięcie się od technologii w XXI wieku jest niemożliwe i nieefektywne. Celem cyfrowego detoksu nie jest powrót do epoki kamienia łupanego, lecz zdefiniowanie zdrowych relacji z narzędziami cyfrowymi. Oto sprawdzone kroki do wdrożenia od zaraz:</p>
+                
+                <ul>
+                    <li><strong>Bezwzględne wyłączenie powiadomień:</strong> Wejdź w ustawienia telefonu i wyłącz powiadomienia ze wszystkich aplikacji społecznościowych, informacyjnych i zakupowych. Pozostaw aktywne jedynie połączenia telefoniczne i wiadomości od realnych ludzi. Ty decydujesz, kiedy wchodzisz do aplikacji, aplikacja nie ma prawa wołać Ciebie.</li>
+                    <li><strong>Strefy wolne od technologii:</strong> Wprowadź w domu zasady nienaruszalności przestrzeni. Sypialnia powinna być strefą całkowicie bezekranową. Kup tradycyjny budzik, a telefon zostawiaj na noc w salonie lub kuchni. Drugą taką strefą powinien być stół jadalny podczas posiłków.</li>
+                    <li><strong>Ekran w trybie monochromatycznym (czarno-białym):</strong> Przełączenie wyświetlacza w tryb skali szarości natychmiast odbiera aplikacjom ich atrakcyjność wizualną. Kolorowe ikonki tracą swoją magnetyczną siłę, a Ty spędzasz w telefonie o wiele mniej czasu.</li>
+                </ul>
+
+                <div class="blockquote">
+                    "Prawdziwym luksusem w dzisiejszych czasach nie jest stały dostęp do informacji, ale umiejętność celowego odłączenia się i bycia tu i teraz."
+                </div>
+
+                <h2>4. Higiena pracy przed ekranem na co dzień</h2>
+                <p>Jeśli Twoja praca wymaga wielogodzinnego siedzenia przed monitorem komputera, musisz wdrożyć żelazne zasady ochrony swojego zdrowia fizycznego. Zaniedbania w tym obszarze prowadzą do zespołu suchego oka, bólów kręgosłupa i chronicznych bólów głowy.</p>
+                <p>Zastosuj <strong>regułę 20-20-20</strong>. Co 20 minut spójrz na obiekt oddalony o co najmniej 20 stóp (około 6 metrów) przez co najmniej 20 sekund. Pozwala to rozluźnić mięśnie rzęskowe oka, które pracują bez przerwy, gdy patrzysz na bliski monitor. Dodatkowo zadbaj o ergonomiczną pozycję: górna krawędź monitora powinna znajdować się na wysokości Twoich oczu, a stopy powinny płasko spoczywać na podłodze.</p>
+                <p>Podsumowując, odzyskanie kontroli nad własną uwagą wymaga wysiłku i dyscypliny, ale benefity w postaci spokoju ducha, lepszego snu i wyższej produktywności są absolutnie tego warte. Zacznij od małych kroków już dzisiaj.</p>
+            </article>
         </div>
-    </main>
-</div>
 
-<article class="edu-content" style="max-width: 1360px; margin: 40px auto; padding: 40px; background: white; border-radius: 24px; box-shadow: 0 8px 20px rgba(0,0,0,0.05); border: 3px solid #e8f5e9; font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.8; color: #444;">
-    <h2 style="color: #2e7d32; font-size: 32px; border-bottom: 3px dashed #c8e6c9; padding-bottom: 15px; margin-top: 0;">Multi-Matma: Dlaczego nauka matematyki przez zabawę jest tak ważna? Kompleksowy przewodnik edukacyjny</h2>
-    
-    <p style="font-size: 16px;">Witaj na innowacyjnym portalu edukacyjnym <strong>Multi-Matma</strong> – wyjątkowym miejscu w sieci, gdzie rygorystyczna nauka spotyka się z angażującą cyfrową grywalizacją. Nasz serwis został starannie zaprojektowany z myślą o uczniach szkół podstawowych oraz dzieciach w wieku przedszkolnym. Nowoczesne badania z zakresu neurodydaktyki i psychologii poznawczej jednoznacznie dowodzą, że mózg rozwijającego się dziecka przyswaja abstrakcyjne pojęcia matematyczne znacznie szybciej, efektywniej i na dłużej, gdy proces ten opiera się na pozytywnych bodźcach, interaktywnej rozrywce oraz redukcji szkolnego stresu.</p>
-    
-    <h3 style="color: #388e3c; font-size: 24px; margin-top: 35px;">Pokonywanie lęku przed matematyką (Math Anxiety)</h3>
-    <p style="font-size: 16px;">Jednym z największych wyzwań współczesnego szkolnictwa jest zjawisko tzw. "lęku matematycznego". Uczniowie często paraliżowani są strachem przed popełnieniem błędu przy tablicy. W Multi-Matmie błąd nie jest powodem do wstydu – jest naturalnym krokiem w procesie uczenia się. Kiedy uczeń udzieli błędnej odpowiedzi, otrzymuje natychmiastową, łagodną informację zwrotną bez negatywnych konsekwencji. Może spróbować ponownie po chwili. Takie bezpieczne środowisko buduje <strong>pewność siebie</strong>, która jest kluczowa w przedmiotach ścisłych.</p>
+        <!-- ================= ARTYKUŁ 2 ================= -->
+        <div id="artykul-2" class="page-section">
+            <article>
+                <h1>Jak mądrze budować nawyki żywieniowe bez restrykcyjnych diet? Podstawy zdrowego rozsądku</h1>
+                <p class="intro"><strong>Wprowadzenie:</strong> Żyjemy w kulturze, która ma obsesję na punkcie idealnego wyglądu i ekspresowych rozwiązań. Co roku na rynku pojawiają się nowe, rewolucyjne diety, które obiecują spektakularną utratę wagi w zaledwie kilka tygodni. Dieta ketogeniczna, posty przerywane, diety sokowe czy eliminacja węglowodanów – wybór jest ogromny, ale statystyki są bezlitosne. Ponad 90% osób, które przechodzą na restrykcyjne diety odchudzające, w ciągu dwóch lat wraca do swojej początkowej wagi, często z nadwyżką, zmagając się z tak zwanym efektem jojo. Dlaczego tak się dzieje? Odpowiedź jest prosta: diety są rozwiązaniem tymczasowym, a nasze ciało i psychika potrzebują stałych zmian. Ten artykuł wyjaśnia, jak zbudować zdrowe relacje z jedzeniem na całe życie bez poczucia winy i wyrzeczeń.</p>
+                
+                <h2>1. Psychologia nawyków kontra kultura dietetyczna</h2>
+                <p>Głównym powodem porażki większości diet jest traktowanie ich jako zamkniętego w czasie okresu kary i wyrzeczeń. Myślimy: "Wytrzymam na tej diecie miesiąc, schudnę, a potem wrócę do normalnego życia". To myślenie z gruntu błędne, ponieważ to właśnie to "normalne życie" i dotychczasowe nawyki doprowadziły nas do miejsca, z którego chcemy uciec. Nasz mózg nie lubi gwałtownych zmian – każda radykalna restrykcja kaloryczna jest przez niego interpretowana jako okres głodu i zagrożenia życia, co uruchamia mechanizmy obronne, takie jak spowolnienie metabolizmu i wilczy apetyt.</p>
+                <p>Skuteczna zmiana sylwetki i poprawa zdrowia nie zachodzi w kuchni, ale przede wszystkim w naszej głowie. Zamiast wprowadzać rewolucję, musimy skupić się na ewolucji. Budowanie nawyków polega na wprowadzaniu tak małych modyfikacji, że nasz mózg prawie ich nie zauważa, dzięki czemu nie stawia oporu. Zamiana białego pieczywa na pełnoziarniste czy wypijanie szklanki wody przed każdym posiłkiem to drobne kroki, które po kilku miesiącach dają kolosalne rezultaty.</p>
 
-    <h3 style="color: #388e3c; font-size: 24px; margin-top: 35px;">Grywalizacja jako napęd wewnętrznej motywacji</h3>
-    <p style="font-size: 16px;">Systematyczne powtarzanie działań arytmetycznych jest absolutnym kluczem do biegłości rachunkowej (mental math). Problem w tym, że wypełnianie tradycyjnych kart pracy bywa dla dzieci monotonne i zniechęcające. Dzięki naszej aplikacji dzieci mogą ćwiczyć dodawanie, odejmowanie, mnożenie i dzielenie zapominając o poczuciu rutyny. Wprowadziliśmy zaawansowany, choć intuicyjny motywacyjny system nagród:</p>
-    <ul style="font-size: 16px; margin-top: 15px; padding-left: 25px; color: #555;">
-        <li style="margin-bottom: 10px;"><strong>Zbieranie Gwiazdek:</strong> Każda poprawna odpowiedź nagradzana jest wirtualną walutą, co daje uczniom natychmiastowe poczucie sukcesu i satysfakcji.</li>
-        <li style="margin-bottom: 10px;"><strong>System Combo (Ananasy):</strong> Aby zachęcić do skupienia i dokładności, wdrożyliśmy wskaźnik "combo". Seria poprawnych odpowiedzi pod rząd nagradzana jest Super Ananasem i ogromnym bonusem punktowym. Uczy to koncentracji na zadaniu.</li>
-        <li style="margin-bottom: 10px;"><strong>Nieskończona liczba wyzwań:</strong> Dzięki zaimplementowanym skryptom losującym, każde zapytanie w naszej bazie generuje unikalną kombinację liczbową. Zapobiega to mechanicznemu zapamiętywaniu odpowiedzi (jak ma to miejsce w standardowych zeszytach ćwiczeń) i zmusza młodego użytkownika do czynnego analizowania struktur matematycznych.</li>
-    </ul>
+                <h2>2. Zasada 80/20 – sekret zdrowego balansu</h2>
+                <p>Jednym z najbardziej destrukcyjnych podejść w dietetyce jest myślenie czarno-białe, czyli zasada "wszystko albo nic". Dzielimy produkty na absolutnie dobre i absolutnie złe. Kiedy będąc na diecie, ulegniemy pokusie i zzjemy jeden kawałek pizzy lub czekolady, pojawia się poczucie winy oraz myśl: "Wszystko zepsute, cały dzień zmarnowany, więc mogę zjeść całą resztę".</p>
+                <p>Rozwiązaniem tego problemu jest **zasada 80/20**. Zakłada ona, że:</p>
+                <ul>
+                    <li><strong>80% Twojej diety</strong> powinno pochodzić z nisko przetworzonych, bogatych w składniki odżywcze produktów: warzyw, owoców, pełnoziarnistych zbóż, chudego białka i zdrowych tłuszczów.</li>
+                    <li><strong>20% Twojej diety</strong> to przestrzeń na tzw. zachcianki i produkty rekreacyjne – ulubione słodycze, wyjście ze znajomymi na pizzę czy lody.</li>
+                </ul>
+                <p>Dzięki takiemu podejściu zdejmujesz z siebie presję psychologiczną. Nic nie jest zakazane, więc nie kusi tak bardzo. Możesz jeść zdrowo, cieszyć się życiem towarzyskim i nie mieć wyrzutów sumienia z powodu zjedzenia ciastka.</p>
 
-    <h3 style="color: #388e3c; font-size: 24px; margin-top: 35px;">Kompleksowy program dostosowany do polskiego systemu edukacji</h3>
-    <p style="font-size: 16px;">Zadania na platformie zostały ustrukturyzowane z niezwykłą precyzją, aby idealnie odpowiadać wymogom podstawy programowej na poszczególnych szczeblach edukacji. Podzieliliśmy materiał na intuicyjne sekcje:</p>
-    
-    <div style="background: #f9fbe7; padding: 20px; border-radius: 12px; border-left: 5px solid #8bc34a; margin: 20px 0;">
-        <h4 style="margin-top: 0; color: #33691e; font-size: 18px;">Edukacja wczesnoszkolna (Zerówka oraz Klasy 1-3)</h4>
-        <p style="font-size: 15px; margin-bottom: 0;">Ćwiczenia na tym etapie koncentrują się na budowaniu intuicji liczbowej. Rozpoczynamy od orientacji przestrzennej, rozpoznawania kształtów i kolorów. Następnie płynnie przechodzimy do podstawowych operacji: dodawania i odejmowania w zakresie 10, 20 i 50. W klasach drugiej i trzeciej dzieci zapoznają się z pojęciem czasu, miar, a także rozpoczynają przygodę z tabliczką mnożenia (najpierw do 30, potem pełną do 100). Wprowadzamy także proste zadania testowe i innowacyjne "Krzyżówki magiczne", które rozwijają logiczne myślenie.</p>
-    </div>
+                <h2>3. Filary zdrowego odżywiania, o których zapominamy</h2>
+                <p>Skupiając się na kaloriach i makroskładnikach, często zapominamy o absolutnych podstawach fizjologii, które mają kluczowe znaczenie dla naszego metabolizmu i samopoczucia.</p>
+                
+                <h3>A. Odpowiednie nawodnienie organizmu</h3>
+                <p>Woda jest środowiskiem dla wszystkich reakcji biochemicznych w naszym ciele. Bardzo często nasz ośrodek głodu w mózgu myli sygnał odwodnienia z głodem. Kiedy czujesz ochotę na przekąskę, bardzo możliwe, że Twoje ciało po prostu potrzebuje wody. Pij regularnie około 2-2.5 litra wody dziennie, a zauważysz przypływ energii i mniejszą ochotę na podjadanie między posiłkami.</p>
 
-    <div style="background: #e8eaf6; padding: 20px; border-radius: 12px; border-left: 5px solid #3f51b5; margin: 20px 0;">
-        <h4 style="margin-top: 0; color: #1a237e; font-size: 18px;">Drugi etap edukacyjny (Klasy 4-6)</h4>
-        <p style="font-size: 15px; margin-bottom: 0;">To czas, gdy matematyka staje się bardziej abstrakcyjna. Uczniowie mierzą się z dzieleniem z resztą, co jest świetnym wstępem do ułamków zwykłych. Rozwijamy kompetencje związane z kolejnością wykonywania działań (niezwykle ważna zasada BEDMAS/PEMDAS). W klasie szóstej duży nacisk kładziemy na dodawanie i odejmowanie ułamków dziesiętnych, podstawy figur na płaszczyźnie oraz bardzo praktyczne zadania tekstowe związane z obliczaniem prędkości, drogi i czasu, a także absolutne podstawy obliczeń procentowych.</p>
-    </div>
+                <h3>B. Rola błonnika i zdrowia jelit</h3>
+                <p>Błonnik pokarmowy, obecny w warzywach, owocach i produktach pełnoziarnistych, działa w naszym układzie pokarmowym jak miotła. Chłonie wodę, pęcznieje w żołądku i zapewnia długotrwałe uczucie sytości po posiłku. Ponadto błonnik jest pożywką dla naszych dobrych bakterii jelitowych, a mikrobiom jelitowy ma bezpośredni wpływ na nasz układ odpornościowy oraz... nastrój.</p>
 
-    <div style="background: #e0f2f1; padding: 20px; border-radius: 12px; border-left: 5px solid #009688; margin: 20px 0;">
-        <h4 style="margin-top: 0; color: #004d40; font-size: 18px;">Przygotowanie do egzaminu (Klasy 7-8)</h4>
-        <p style="font-size: 15px; margin-bottom: 0;">Najstarsze klasy to poważne powtórki i przygotowanie do egzaminu ósmoklasisty. Nasz moduł dla klas siódmych i ósmych oferuje zaawansowane zadania z algebry. Uczniowie utrwalają działania na liczbach całkowitych (w tym problematyczne dla wielu dodawanie i odejmowanie liczb ujemnych). Trenują potęgowanie do kwadratu oraz wyciąganie pierwiastków kwadratowych. Finałem nauki jest moduł rozwiązywania równań liniowych z jedną niewiadomą (x), który stanowi pomost do matematyki w szkole średniej.</p>
-    </div>
+                <div class="blockquote">
+                    "Nie musisz jeść idealnie, musisz jeść wystarczająco dobrze przez większość czasu. Konsekwencja bije perfekcję na głowę."
+                </div>
 
-    <h3 style="color: #388e3c; font-size: 24px; margin-top: 35px;">Wskazówki dla rodziców i nauczycieli</h3>
-    <p style="font-size: 16px;">Edukacja matematyczna rozpoczyna się w domu. Aby w pełni wykorzystać potencjał naszej platformy Multi-Matma, zalecamy stosowanie metody "krótkich, ale częstych sesji". Badania pokazują, że 10 do 15 minut intensywnego treningu rachunkowego każdego dnia przynosi nieporównywalnie lepsze rezultaty niż godzinne ślęczenie nad zadaniami raz w tygodniu. Zachęcamy do wspólnego rozwiązywania zadań z najmłodszymi dziećmi – to świetna okazja do jakościowego spędzenia czasu i celebrowania wspólnie zdobytych "gwiazdek".</p>
-    
-    <p style="font-size: 16px; margin-top: 20px; font-weight: bold; text-align: center; color: #2e7d32;">
-        Dołącz do tysięcy uczniów, którzy odkryli, że matematyka nie musi być trudna. <br>Regularny trening czyni mistrza. Zapraszamy do codziennej zabawy z Multi-Matmą!
-    </p>
-</article>
+                <h2>4. Jak zacząć od dziś? Trzy proste zasady</h2>
+                <p>Zamiast szukać nowej diety od poniedziałku, wdróż te trzy nawyki już przy następnym posiłku. Po pierwsze: **wypełnij połowę swojego talerza warzywami**. Mają one mnóstwo witamin, mało kalorii i dużą objętość, co fizycznie wypełni Twój żołądek. Po drugie: **jedz uważnie i powoli**. Sygnał o sytości dociera z żołądka do mózgu po około 15-20 minutach. Jeśli jesz w pośpiechu przed ekranem telewizora, zjesz znacznie więcej, zanim poczujesz, że jesteś pełen. Po trzecie: **nie pij swoich kalorii**. Słodkie napoje gazowane, soki owocowe czy słodzone kawy dostarczają ogromnych ilości cukru, nie dając w zamian żadnego uczucia sytości.</p>
+                <p>Zdrowe odżywianie to nie wyrok ani pasmo udręki. To akt troski o własne ciało i umysł. Zmieniaj nawyki powoli, bądź dla siebie wyrozumiały, a zdrowa sylwetka będzie naturalnym skutkiem ubocznym Twojego nowego stylu życia.</p>
+            </article>
+        </div>
 
-<script>
-    const classConfigs = {
-        0: { name: "Zerówka", color: "#9c27b0", icon: "fa-bug", topics: [
-            { name: "Kształty i kolory", type: "add5" },
-            { name: "Kierunki i położenie", type: "sub5" },
-            { name: "Kalendarz i czas", type: "add5" },
-            { name: "Wielkości i porównania", type: "sub5" }
-        ]},
-        1: { name: "Klasa 1", color: "#e91e63", icon: "fa-elephant", topics: [
-            { name: "Matematyka w praktyce", type: "add10" },
-            { name: "Poznajemy liczby", type: "sub10" },
-            { name: "Dodawanie w zakresie 20", type: "add20" },
-            { name: "Odejmowanie w zakresie 20", type: "sub20" }
-        ]},
-        2: { name: "Klasa 2", color: "#03a9f4", icon: "fa-hippo", topics: [
-            { name: "Miary, plany i czas", type: "add100_10" },
-            { name: "Dodawanie i odejmowanie", type: "sub100_10" },
-            { name: "Mnożenie do 30", type: "mul30" },
-            { name: "Dzielenie w praktyce", type: "mul50" }
-        ]},
-        3: { name: "Klasa 3", color: "#4caf50", icon: "fa-otter", topics: [
-            { name: "Dodawanie w zakresie 50 - TEST", type: "add50" },
-            { name: "Odejmowanie w zakresie 50 - TEST", type: "sub50" },
-            { name: "Mnożenie i dzielenie", type: "mul100" },
-            { name: "Działania na liczbach do 100", type: "sub100" },
-            { name: "Krzyżówka magiczna - DODAWANIE", type: "add50", isNew: true },
-            { name: "Krzyżówka magiczna - ODEJMOWANIE", type: "sub50", isNew: true }
-        ]},
-        4: { name: "Klasa 4", color: "#ff9800", icon: "fa-monkey", topics: [
-            { name: "Działania na liczbach", type: "div100" },
-            { name: "Kolejność wykonywania działań", type: "add1000" },
-            { name: "Ułamki zwykłe", type: "sub1000" }
-        ]},
-        5: { name: "Klasa 5", color: "#ff5722", icon: "fa-kangaroo", topics: [
-            { name: "Liczby i działania", type: "mul_adv" },
-            { name: "Własności liczb naturalnych", type: "div_adv" },
-            { name: "Liczby całkowite", type: "mix_addsub" }
-        ]},
-        6: { name: "Klasa 6", color: "#795548", icon: "fa-lion", topics: [
-            { name: "Liczby naturalne i ułamki", type: "dec_add" },
-            { name: "Figury na płaszczyźnie", type: "dec_sub" },
-            { name: "Prędkość, droga, czas", type: "percent" }
-        ]},
-        7: { name: "Klasa 7", color: "#009688", icon: "fa-frog", topics: [
-            { name: "Liczby ujemne", type: "int_add" },
-            { name: "Procenty w zadaniach", type: "int_sub" },
-            { name: "Wyrażenia algebraiczne", type: "pow2" }
-        ]},
-        8: { name: "Klasa 8", color: "#3f51b5", icon: "fa-fish", topics: [
-            { name: "Potęgi i pierwiastki", type: "sqrt2" },
-            { name: "Wyrażenia i równania", type: "eq_x" }
-        ]}
-    };
+        <!-- ================= STRONA O NAS ================= -->
+        <div id="o-nas" class="page-section">
+            <h2>O naszej redakcji</h2>
+            <p>Witaj w <strong>Strefie Wiedzy</strong>! Jesteśmy niezależnym portalem internetowym stworzonym z pasji do szeroko pojętego rozwoju osobistego, zdrowego stylu życia i nowoczesnej psychologii. Nasz zespół składa się z pasjonatów i praktyków, którzy nie lubią powielać mitów i tanich sensacji. Każdy artykuł tworzony jest w oparciu o rzetelny research i sprawdzone fakty.</p>
+            <p>W dobie szumu informacyjnego stawiamy na jakość, a nie na ilość. Chcemy dostarczać naszym czytelnikom unikalną wartość – wiedzę podaną w przystępny sposób, którą można natychmiast przekuć w praktyczne działanie. Wierzymy, że małe, codzienne zmiany w nawykach mają potężną siłę i prowadzą do lepszego, bardziej świadomego życia.</p>
+            <p>Nasz portal jest w pełni zoptymalizowany dla wygody czytelników i wspierany przez zaufanych partnerów reklamowych, w tym program Google AdSense, co pozwala nam na bezpłatne dostarczanie treści najwyższej jakości. Rozgość się i zostań z nami na dłużej!</p>
+        </div>
 
-    let currentClass = 3; 
-    let currentTopicIndex = 0; 
-    let correctScore = 0;
-    let wrongScore = 0;
-    let currentAnswer = 0;
-    let isAnswering = false;
-    let comboCount = 0; 
-    const requiredCombo = 6;
+        <!-- ================= STRONA KONTAKT ================= -->
+        <div id="kontakt" class="page-section">
+            <h2>Kontakt z nami</h2>
+            <p>Masz pytania dotyczące opublikowanych artykułów? Chcesz podzielić się swoją opinią lub zaproponować temat kolejnego wpisu? A może jesteś zainteresowany współpracą reklamową? Jesteśmy otwarci na wiadomości i sugestie naszych czytelników oraz partnerów biznesowych.</p>
+            <p>Możesz się z nami skontaktować bezpośrednio poprzez nasz oficjalny adres mailowy:</p>
+            <p>📧 <strong>kontakt@twojadomena.pl</strong></p>
+            <p>Na wszystkie zapytania staramy się odpowiadać w ciągu 24-48 godzin w dni robocze. Administratorem Twoich danych osobowych podanych w korespondencji e-mail jest redakcja bloga Strefa Wiedzy. Dane są przetwarzane wyłącznie w celu udzielenia odpowiedzi na Twoje zapytanie.</p>
+        </div>
 
-    let userPoints = parseInt(localStorage.getItem('multimatma_stars')) || 0;
-
-    function updatePointsDisplay() {
-        document.getElementById('user-points').innerText = userPoints;
-        localStorage.setItem('multimatma_stars', userPoints);
-    }
-
-    function renderPineapples() {
-        const bar = document.getElementById('pineapple-bar');
-        bar.innerHTML = '';
-        for (let i = 0; i < 10; i++) {
-            let icon = document.createElement('i');
-            icon.className = 'fas fa-apple-whole pineapple'; 
-            if (i < comboCount) {
-                icon.classList.add('active-fruit');
-            }
-            bar.appendChild(icon);
-        }
-        document.getElementById('required-combo').innerText = requiredCombo;
-    }
-
-    function getRandomInt(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
-
-    function showMainMenu() {
-        document.getElementById('quiz-screen').classList.add('hidden');
-        document.getElementById('main-menu-screen').classList.remove('hidden');
-        buildMainMenuGrid();
-    }
-
-    function buildMainMenuGrid() {
-        const grid = document.getElementById('main-grid');
-        grid.innerHTML = '';
-        Object.keys(classConfigs).forEach(num => {
-            const conf = classConfigs[num];
-            let box = document.createElement('div');
-            box.className = 'class-box';
-            box.onclick = () => {
-                document.getElementById('main-menu-screen').classList.add('hidden');
-                document.getElementById('quiz-screen').classList.remove('hidden');
-                changeClass(parseInt(num));
-            };
+        <!-- ================= STRONA POLITKYKA PRYWATNOŚCI ================= -->
+        <div id="polityka" class="page-section">
+            <h2>Polityka Prywatności i Plików Cookies</h2>
+            <p>Niniejsza Polityka Prywatności określa zasady przetwarzania i ochrony danych osobowych oraz wykorzystywania plików cookies w serwisie internetowym Strefa Wiedzy (dostępnym pod adresem: twojadomena.pl). Dbamy o bezpieczeństwo Twoich danych i szanujemy Twoją prywatność.</p>
             
-            let html = `<div class="class-box-header" style="background:${conf.color}"><i class="fas ${conf.icon}"></i> ${conf.name}</div><div class="class-box-body"><ul>`;
-            conf.topics.forEach(t => {
-                html += `<li><i class="fas fa-star" style="font-size:10px;color:${conf.color}"></i> ${t.name}</li>`;
+            <h3>1. Administrator Danych Osobowych</h3>
+            <p>Administratorem danych osobowych zbieranych w serwisie jest redakcja portalu Strefa Wiedzy. Dane przetwarzane są zgodnie z obowiązującymi przepisami prawa, w tym zgodnie z RODO.</p>
+            
+            <h3>2. Pliki Cookies i Reklamy Google AdSense (Wymóg Prawny)</h3>
+            <p>Nasz serwis korzysta z zewnętrznych dostawców reklam, w tym firmy <strong>Google Inc.</strong>, w celu wyświetlania reklam dopasowanych do preferencji użytkowników.</p>
+            <ul>
+                <li>Google, jako dostawca zewnętrzny, wykorzystuje pliki cookie (w tym pliki cookie DoubleClick) do wyświetlania reklam w tej witrynie na podstawie poprzednich odwiedzin użytkownika w tej lub innych witrynach internetowych.</li>
+                <li>Dzięki plikom cookie do celów reklamowych firma Google i jej partnerzy mogą wyświetlać użytkownikom konkretne reklamy na podstawie ich wizyt na naszym blogu i innych stronach.</li>
+                <li>Użytkownicy mogą zrezygnować ze spersonalizowanych reklam. W tym celu należy przejść do strony <a href="https://myadcenter.google.com/" target="_blank" rel="noopener">Ustawienia reklam Google</a>. Alternatywnie możesz wyłączyć stosowanie plików cookie stron trzecich do celów reklam spersonalizowanych, odwiedzając stronę <a href="https://www.aboutcookies.org/" target="_blank" rel="noopener">aboutcookies.org</a>.</li>
+            </ul>
+
+            <h3>3. Logi serwera</h3>
+            <p>Korzystanie z witryny wiąże się z przesyłaniem zapytań do serwera, na którym przechowywana jest strona. Każde zapytanie zapisywane jest w logach serwera, które obejmują m.in. adres IP, datę i czas systemowy, informacje o przeglądarce internetowej i systemie operacyjnym. Dane te nie są kojarzone z konkretnymi osobami i służą wyłącznie celom administracyjnym.</p>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Strefa Wiedzy. Wszelkie prawa zastrzeżone.</p>
+        <div>
+            <a href="#o-nas" onclick="switchPage('o-nas')">O nas</a> | 
+            <a href="#kontakt" onclick="switchPage('kontakt')">Kontakt</a> | 
+            <a href="#polityka" onclick="switchPage('polityka')">Polityka Prywatności</a>
+        </div>
+    </footer>
+
+    <!-- ================= SKRYPT JAVASCRIPT (SPA LOGIC) ================= -->
+    <script>
+        function switchPage(sectionId) {
+            // Ukryj wszystkie sekcje
+            const sections = document.querySelectorAll('.page-section');
+            sections.forEach(section => {
+                section.classList.remove('active');
             });
-            html += `</ul></div>`;
-            box.innerHTML = html;
-            grid.appendChild(box);
-        });
-    }
 
-    function changeClass(classNum) {
-        currentClass = classNum;
-        currentTopicIndex = 0;
-        comboCount = 0;
-        
-        const config = classConfigs[classNum];
-        document.getElementById('class-badge').innerText = config.name;
-        document.getElementById('class-badge').style.backgroundColor = config.color;
-        
-        document.querySelectorAll('.grade-item').forEach(el => el.classList.remove('active'));
-        document.getElementById(`nav-${classNum}`).classList.add('active');
-
-        renderSidebar();
-        loadTopic(currentTopicIndex);
-    }
-
-    function renderSidebar() {
-        const config = classConfigs[currentClass];
-        const sidebarMenu = document.getElementById('sidebar-menu');
-        sidebarMenu.innerHTML = "";
-        
-        config.topics.forEach((topic, index) => {
-            let li = document.createElement('li');
-            li.innerHTML = `<span>${index+1}. ${topic.name}</span>`;
-            if(topic.isNew) {
-                li.innerHTML += `<span class="badge-new">NOWOŚĆ</span>`;
+            // Pokaż wybraną sekcję
+            const activeSection = document.getElementById(sectionId);
+            if (activeSection) {
+                activeSection.classList.add('active');
             }
-            if(index === currentTopicIndex) li.classList.add('active-topic');
-            li.onclick = () => loadTopic(index);
-            sidebarMenu.appendChild(li);
-        });
-    }
 
-    function loadTopic(index) {
-        currentTopicIndex = index;
-        const config = classConfigs[currentClass];
-        document.getElementById('quiz-title').innerText = config.topics[index].name;
-        
-        const lis = document.getElementById('sidebar-menu').children;
-        for(let i=0; i<lis.length; i++) lis[i].classList.remove('active-topic');
-        if(lis[index]) lis[index].classList.add('active-topic');
-
-        correctScore = 0; wrongScore = 0; comboCount = 0;
-        document.getElementById('score-correct').innerText = 0;
-        document.getElementById('score-wrong').innerText = 0;
-        
-        generateEquation();
-    }
-
-    function generateEquation() {
-        isAnswering = false;
-        document.getElementById('feedback').innerText = "";
-        renderPineapples();
-        
-        const type = classConfigs[currentClass].topics[currentTopicIndex].type;
-        let num1, num2, displayEq;
-
-        let instr = "Kliknij guzik będący wynikiem działania.";
-        if(type.includes("sub")) instr = "Kliknij guzik będący wynikiem odejmowania.";
-        if(type.includes("add")) instr = "Kliknij guzik będący wynikiem dodawania.";
-        if(type.includes("mul")) instr = "Kliknij guzik będący wynikiem mnożenia.";
-        if(type.includes("div")) instr = "Kliknij guzik będący wynikiem dzielenia.";
-        document.getElementById('quiz-instruction').innerText = instr;
-
-        switch(type) {
-            case "add5": num1 = getRandomInt(1, 4); num2 = getRandomInt(1, 5-num1); currentAnswer = num1+num2; displayEq = `${num1} + ${num2} =`; break;
-            case "sub5": num1 = getRandomInt(2, 5); num2 = getRandomInt(1, num1-1); currentAnswer = num1-num2; displayEq = `${num1} - ${num2} =`; break;
-            case "add10": num1 = getRandomInt(1, 9); num2 = getRandomInt(1, 10-num1); currentAnswer = num1+num2; displayEq = `${num1} + ${num2} =`; break;
-            case "sub10": num1 = getRandomInt(2, 10); num2 = getRandomInt(1, num1-1); currentAnswer = num1-num2; displayEq = `${num1} - ${num2} =`; break;
-            case "add20": num1 = getRandomInt(5, 15); num2 = getRandomInt(1, 20-num1); currentAnswer = num1+num2; displayEq = `${num1} + ${num2} =`; break;
-            case "sub20": num1 = getRandomInt(11, 20); num2 = getRandomInt(1, num1-1); currentAnswer = num1-num2; displayEq = `${num1} - ${num2} =`; break;
-            case "add50": num1 = getRandomInt(10, 35); num2 = getRandomInt(5, 50-num1); currentAnswer = num1+num2; displayEq = `${num1} + ${num2} =`; break;
-            case "sub50": num1 = getRandomInt(25, 49); num2 = getRandomInt(10, 24); currentAnswer = num1-num2; displayEq = `${num1} - ${num2} =`; break;
-            case "add100_10": num1 = getRandomInt(1, 8)*10; num2 = getRandomInt(1, 9 - (num1/10))*10; currentAnswer = num1+num2; displayEq = `${num1} + ${num2} =`; break;
-            case "sub100_10": num1 = getRandomInt(2, 10)*10; num2 = getRandomInt(1, (num1/10)-1)*10; currentAnswer = num1-num2; displayEq = `${num1} - ${num2} =`; break;
-            case "mul30": num1 = getRandomInt(2, 6); num2 = getRandomInt(2, 5); currentAnswer = num1*num2; displayEq = `${num1} × ${num2} =`; break;
-            case "mul50": num1 = getRandomInt(3, 8); num2 = getRandomInt(3, 6); currentAnswer = num1*num2; displayEq = `${num1} × ${num2} =`; break;
-            case "sub100": num1 = getRandomInt(50, 100); num2 = getRandomInt(10, num1-1); currentAnswer = num1-num2; displayEq = `${num1} - ${num2} =`; break;
-            case "mul100": num1 = getRandomInt(4, 10); num2 = getRandomInt(4, 10); currentAnswer = num1*num2; displayEq = `${num1} × ${num2} =`; break;
-            case "div100": currentAnswer = getRandomInt(2, 10); num2 = getRandomInt(2, 10); num1 = currentAnswer * num2; displayEq = `${num1} : ${num2} =`; break;
-            case "add1000": num1 = getRandomInt(100, 800); num2 = getRandomInt(50, 999-num1); currentAnswer = num1+num2; displayEq = `${num1} + ${num2} =`; break;
-            case "sub1000": num1 = getRandomInt(300, 1000); num2 = getRandomInt(50, num1-100); currentAnswer = num1-num2; displayEq = `${num1} - ${num2} =`; break;
-            case "mul_adv": num1 = getRandomInt(11, 20); num2 = getRandomInt(2, 9); currentAnswer = num1*num2; displayEq = `${num1} × ${num2} =`; break;
-            case "div_adv": currentAnswer = getRandomInt(11, 20); num2 = getRandomInt(2, 5); num1 = currentAnswer * num2; displayEq = `${num1} : ${num2} =`; break;
-            case "mix_addsub": num1 = getRandomInt(100, 500); num2 = getRandomInt(50, 200); if(Math.random() > 0.5) { currentAnswer = num1+num2; displayEq = `${num1} + ${num2} =`; } else { currentAnswer = num1-num2; displayEq = `${num1} - ${num2} =`; } break;
-            case "dec_add": num1 = getRandomInt(1, 50)/10; num2 = getRandomInt(1, 40)/10; currentAnswer = parseFloat((num1+num2).toFixed(1)); displayEq = `${num1} + ${num2} =`; break;
-            case "dec_sub": num1 = getRandomInt(30, 99)/10; num2 = getRandomInt(1, 29)/10; currentAnswer = parseFloat((num1-num2).toFixed(1)); displayEq = `${num1} - ${num2} =`; break;
-            case "percent": num2 = getRandomInt(1, 10)*10; const percents = [10, 20, 25, 50]; num1 = percents[getRandomInt(0, 3)]; currentAnswer = (num1/100) * num2; displayEq = `${num1}% z ${num2} =`; break;
-            case "int_add": num1 = getRandomInt(-20, -1); num2 = getRandomInt(5, 25); currentAnswer = num1+num2; displayEq = `${num1} + ${num2} =`; break;
-            case "int_sub": num1 = getRandomInt(-10, 10); num2 = getRandomInt(1, 15); currentAnswer = num1-num2; displayEq = `${num1} - ${num2} =`; break;
-            case "pow2": num1 = getRandomInt(2, 15); currentAnswer = num1*num1; displayEq = `${num1}² =`; break;
-            case "sqrt2": currentAnswer = getRandomInt(2, 15); num1 = currentAnswer*currentAnswer; displayEq = `√${num1} =`; break;
-            case "eq_x": currentAnswer = getRandomInt(2, 20); num2 = getRandomInt(5, 30); num1 = currentAnswer + num2; displayEq = `x + ${num2} = ${num1}`; break;
+            // Przewiń na górę strony po zmianie widoku
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         }
 
-        document.getElementById('equation').innerHTML = displayEq;
-        generateButtons(type);
-    }
-
-    function generateButtons(type) {
-        const container = document.getElementById('options-container');
-        container.innerHTML = ''; 
-        
-        let answersSet = new Set();
-        answersSet.add(currentAnswer);
-
-        let isDecimal = type.includes("dec");
-
-        while(answersSet.size < 4) {
-            let wrongAnswer;
-            if (isDecimal) {
-                let offset = getRandomInt(1, 5) / 10;
-                wrongAnswer = Math.random() > 0.5 ? currentAnswer + offset : currentAnswer - offset;
-                wrongAnswer = parseFloat(wrongAnswer.toFixed(1));
-            } else {
-                let offset = getRandomInt(1, (currentAnswer < 10 ? 4 : 12));
-                wrongAnswer = Math.random() > 0.5 ? currentAnswer + offset : currentAnswer - offset;
+        // Obsługa bezpośrednich linków z hashem przy przeładowaniu (np. index.html#kontakt)
+        window.addEventListener('DOMContentLoaded', () => {
+            const hash = window.location.hash.replace('#', '');
+            if (hash) {
+                switchPage(hash);
             }
-            
-            let canBeNegative = currentClass >= 7;
-            if(wrongAnswer !== currentAnswer && (wrongAnswer >= 0 || canBeNegative)) {
-                answersSet.add(wrongAnswer);
-            }
-        }
-        
-        let answersArray = Array.from(answersSet);
-        answersArray.sort(() => Math.random() - 0.5); 
-        
-        answersArray.forEach(ans => {
-            let btn = document.createElement('button');
-            btn.className = 'btn-option';
-            btn.innerText = ans;
-            btn.onclick = () => checkAnswer(ans, btn);
-            container.appendChild(btn);
         });
-    }
-
-    function checkAnswer(selected, element) {
-        if(isAnswering) return;
-        isAnswering = true;
-
-        if(selected === currentAnswer) {
-            correctScore++;
-            comboCount++;
-            userPoints += 5; 
-            
-            document.getElementById('score-correct').innerText = correctScore;
-            element.style.background = "linear-gradient(to bottom, #81c784, #4caf50)";
-            element.style.borderColor = "#388e3c";
-            element.style.color = "white";
-            
-            document.getElementById('feedback').innerText = "Wspaniale! Dobra odpowiedź! ✨ 🎉";
-            document.getElementById('feedback').style.color = "#2e7d32";
-            
-            if (comboCount >= requiredCombo) {
-                userPoints += 30; 
-                alert("Fantastycznie! Zgoniłeś 6 dobrych odpowiedzi pod rząd i zdobywasz Super Ananasa oraz bonusowe 30 Gwiazdek! 🍍⭐");
-                comboCount = 0;
-            }
-
-            updatePointsDisplay();
-            setTimeout(generateEquation, 1000);
-        } else {
-            wrongScore++;
-            comboCount = 0; 
-            document.getElementById('score-wrong').innerText = wrongScore;
-            element.style.background = "linear-gradient(to bottom, #e57373, #f44336)";
-            element.style.borderColor = "#d32f2f";
-            element.style.color = "white";
-            
-            document.getElementById('feedback').innerText = "Ojej, to nie ta odpowiedź! Spróbuj jeszcze raz! 🌟";
-            document.getElementById('feedback').style.color = "#d32f2f";
-            
-            setTimeout(() => {
-                isAnswering = false;
-                element.style.background = "linear-gradient(to bottom, #aed581, #8bc34a)";
-                element.style.borderColor = "#7cb342";
-                element.style.color = "#2e7d32";
-                document.getElementById('feedback').innerText = "";
-                renderPineapples();
-            }, 1300);
-        }
-    }
-
-    window.onload = () => {
-        updatePointsDisplay();
-        changeClass(3);  
-    };
-</script>
+    </script>
 
 </body>
 </html>
